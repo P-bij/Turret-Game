@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://buqptmjqj6p3s"]
+
+[ext_resource type="PackedScene" uid="uid://pemtdc21xuj6" path="res://entities/enemies/alpha_base_enemy.tscn" id="1_tyqcc"]
+[ext_resource type="Script" uid="uid://cctc5qx6ohyp4" path="res://entities/enemies/enemy_helicopter.gd" id="2_wukrc"]
+[ext_resource type="PackedScene" uid="uid://doi8gpo0r842" path="res://components/velocity_component.tscn" id="3_13hcp"]
+[ext_resource type="PackedScene" uid="uid://bby8hscv0dtic" path="res://components/hurtbox_component.tscn" id="4_kcquq"]
+[ext_resource type="Script" uid="uid://crhmq8krbkosv" path="res://components/area_detection_component.gd" id="5_ph32j"]
+[ext_resource type="Script" uid="uid://cdi5d5t58xcw6" path="res://entities/enemies/enemy_helicopter_visible_on_screen_notifier_2d.gd" id="6_7iigk"]
+[ext_resource type="PackedScene" uid="uid://ujlfmucs8b7u" path="res://entities/projectiles/cannon.tscn" id="7_qfqgq"]
+[ext_resource type="Script" uid="uid://cgbirycrph7a3" path="res://entities/enemies/enemy_cannon.gd" id="8_181eh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7iigk"]
+radius = 24.0
+height = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7iigk"]
+radius = 82.02438
+
+[node name="EnemyHelicopter" groups=["Enemy"] instance=ExtResource("1_tyqcc")]
+collision_mask = 154
+script = ExtResource("2_wukrc")
+speed = 400.0
+
+[node name="VelocityComponent" parent="." index="1" instance=ExtResource("3_13hcp")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_7iigk")
+
+[node name="HurtboxComponent" parent="." index="3" instance=ExtResource("4_kcquq")]
+collision_layer = 2
+collision_mask = 64
+health = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxComponent" index="0"]
+polygon = PackedVector2Array(32, -2, 32, 8, 16, 8, 2, 24, -16, 24, 0, 8, -16, 8, -32, -8, -32, -24, -16, -8, -2, -8, -18, -24, -2, -24, 14, -8)
+
+[node name="AreaDetectionComponent" type="Area2D" parent="." index="4" groups=["Enemy"]]
+collision_layer = 256
+collision_mask = 338
+script = ExtResource("5_ph32j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDetectionComponent" index="0"]
+shape = SubResource("CircleShape2D_7iigk")
+
+[node name="EnemyHelicopterVisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="5"]
+script = ExtResource("6_7iigk")
+
+[node name="Cannon" parent="." index="6" instance=ExtResource("7_qfqgq")]
+unique_name_in_owner = true
+script = ExtResource("8_181eh")
+
+[node name="ReloadTimer" type="Timer" parent="." index="7"]
+unique_name_in_owner = true
+wait_time = 0.3
+one_shot = true
+
+[node name="MovementTimer" type="Timer" parent="." index="8"]
+unique_name_in_owner = true
+
+[connection signal="area_entered" from="AreaDetectionComponent" to="AreaDetectionComponent" method="_on_area_entered"]
+[connection signal="area_exited" from="AreaDetectionComponent" to="AreaDetectionComponent" method="_on_area_exited"]
+[connection signal="body_entered" from="AreaDetectionComponent" to="AreaDetectionComponent" method="_on_body_entered"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]

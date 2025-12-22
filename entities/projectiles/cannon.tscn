@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://ujlfmucs8b7u"]
+
+[ext_resource type="Texture2D" uid="uid://c6h1k6ejx0dak" path="res://assets/images/gun.png" id="1_k8ag1"]
+
+[node name="Cannon" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.39607844, 0.6784314, 1, 1)
+position = Vector2(10, 0)
+rotation = 1.5707964
+texture = ExtResource("1_k8ag1")
+
+[node name="BulletMarker2D" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(20, 0)

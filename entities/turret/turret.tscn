@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://txfaofpvs50r"]
+
+[ext_resource type="Script" uid="uid://s78mh7raqsks" path="res://entities/turret/turret.gd" id="1_coqkk"]
+[ext_resource type="Texture2D" uid="uid://bcw0mwpjsgdik" path="res://assets/images/circle.png" id="2_2kw7u"]
+[ext_resource type="Texture2D" uid="uid://btmbtggfhf5v6" path="res://assets/box.png" id="3_mhatg"]
+[ext_resource type="PackedScene" uid="uid://ujlfmucs8b7u" path="res://entities/projectiles/cannon.tscn" id="4_kqd58"]
+[ext_resource type="Script" uid="uid://caw0ofb6f6nby" path="res://entities/turret/player_cannon.gd" id="5_un5sm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8xk5y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rcf7x"]
+size = Vector2(32, 15)
+
+[node name="Turret" type="StaticBody2D" groups=["Player"]]
+collision_layer = 0
+script = ExtResource("1_coqkk")
+
+[node name="Circle" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("CircleShape2D_8xk5y")
+
+[node name="Sprite2D" type="Sprite2D" parent="Circle"]
+modulate = Color(0.39607844, 0.6784314, 1, 1)
+texture = ExtResource("2_2kw7u")
+
+[node name="Box" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_rcf7x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Box"]
+modulate = Color(0.39607844, 0.6784314, 1, 1)
+texture = ExtResource("3_mhatg")
+
+[node name="Cannon" parent="." instance=ExtResource("4_kqd58")]
+unique_name_in_owner = true
+position = Vector2(0, -16.5)
+script = ExtResource("5_un5sm")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

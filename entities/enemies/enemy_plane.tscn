@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmc76mwxncu4"]
+
+[ext_resource type="PackedScene" uid="uid://pemtdc21xuj6" path="res://entities/enemies/alpha_base_enemy.tscn" id="1_1wqjf"]
+[ext_resource type="Script" uid="uid://chjlgjjnx0m6n" path="res://entities/enemies/enemy_plane.gd" id="2_ia5sl"]
+[ext_resource type="PackedScene" uid="uid://bby8hscv0dtic" path="res://components/hurtbox_component.tscn" id="3_s4x86"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1wqjf"]
+radius = 24.0
+height = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s4x86"]
+radius = 38.052597
+
+[node name="EnemyPlane" groups=["Enemy"] instance=ExtResource("1_1wqjf")]
+script = ExtResource("2_ia5sl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_1wqjf")
+
+[node name="HurtboxComponent" parent="." index="2" instance=ExtResource("3_s4x86")]
+collision_layer = 2
+collision_mask = 64
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxComponent" index="0"]
+polygon = PackedVector2Array(32, -2, 32, 8, 16, 8, 2, 24, -16, 24, 0, 8, -16, 8, -32, -8, -32, -24, -16, -8, -2, -8, -18, -24, -2, -24, 14, -8)
+
+[node name="Area2D" type="Area2D" parent="." index="3" groups=["Plane"]]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_s4x86")
