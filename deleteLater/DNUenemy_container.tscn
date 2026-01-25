@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b66mroal6g2yn"]
+
+[ext_resource type="Script" uid="uid://dfftwfxeb1r1q" path="res://deleteLater/DNUenemy_container.gd" id="1_wb6tu"]
+
+[node name="EnemyContainer" type="Node2D"]
+script = ExtResource("1_wb6tu")

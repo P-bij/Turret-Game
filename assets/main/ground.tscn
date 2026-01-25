@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckf7t25wu03rx"]
+
+[ext_resource type="Script" uid="uid://dx735fgf21ctq" path="res://assets/main/ground.gd" id="1_yh8r4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7tip"]
+size = Vector2(1225, 232.5)
+
+[node name="Ground" type="StaticBody2D" groups=["Ground"]]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_yh8r4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(608, 116)
+shape = SubResource("RectangleShape2D_t7tip")

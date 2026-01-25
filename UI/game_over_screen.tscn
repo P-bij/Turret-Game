@@ -1,0 +1,110 @@
+[gd_scene load_steps=8 format=3 uid="uid://bfnof1ribfjrp"]
+
+[ext_resource type="Script" uid="uid://bfppawralx215" path="res://UI/game_over_screen.gd" id="1_50k4i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_50k4i"]
+font_size = 72
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_50k4i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ftyas"]
+bg_color = Color(0.07824574, 0.6738428, 0.79762775, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0.45882353, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yjwqv"]
+bg_color = Color(0.03529412, 0.45882353, 0.54901963, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.025458569, 0.3814193, 0.45559728, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jersm"]
+bg_color = Color(0.037040703, 0.4607169, 0.54842484, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.00787016, 0.20836517, 0.25308853, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="Theme" id="Theme_w767k"]
+Button/colors/font_color = Color(0.00787016, 0.20836517, 0.25308853, 1)
+Button/colors/font_focus_color = Color(0.00787016, 0.20836517, 0.25308853, 1)
+Button/colors/font_hover_color = Color(0.00787016, 0.20836517, 0.25308853, 1)
+Button/colors/font_hover_pressed_color = Color(0.00787016, 0.20836517, 0.25308853, 1)
+Button/colors/font_pressed_color = Color(0.00787016, 0.20836517, 0.25308853, 1)
+Button/font_sizes/font_size = 48
+Button/styles/focus = SubResource("StyleBoxEmpty_50k4i")
+Button/styles/hover = SubResource("StyleBoxFlat_ftyas")
+Button/styles/normal = SubResource("StyleBoxFlat_yjwqv")
+Button/styles/pressed = SubResource("StyleBoxFlat_jersm")
+
+[node name="GameOverColorRect" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 0.469)
+script = ExtResource("1_50k4i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -206.5
+offset_right = 206.5
+offset_bottom = 218.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 40
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_50k4i")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_w767k")
+theme_type_variation = &"FlatButton"
+action_mode = 0
+text = "Start Again"

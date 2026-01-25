@@ -9,4 +9,5 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	look_at(player.global_position)
+	if player:
+		look_at(player.global_position)

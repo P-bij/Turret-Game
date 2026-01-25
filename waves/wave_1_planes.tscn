@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://du15xjemftrmh"]
+
+[ext_resource type="PackedScene" uid="uid://dg2ft32ettnj6" path="res://waves/waves.tscn" id="1_5rp82"]
+[ext_resource type="PackedScene" uid="uid://dmc76mwxncu4" path="res://entities/enemies/enemy_plane.tscn" id="2_ok5kj"]
+
+[node name="Wave1Planes" instance=ExtResource("1_5rp82")]
+packed_enemy = ExtResource("2_ok5kj")
+
+[node name="Batch0" type="Node2D" parent="Batches" index="0"]
+
+[node name="Marker2D0" type="Marker2D" parent="Batches/Batch0" index="0"]
+position = Vector2(1172, 32)
+
+[node name="Marker2D1" type="Marker2D" parent="Batches/Batch0" index="1"]
+position = Vector2(-20, 32)
+
+[node name="Batch1" type="Node2D" parent="Batches" index="1"]
+
+[node name="Marker2D2" type="Marker2D" parent="Batches/Batch1" index="0"]
+position = Vector2(1172, 96)
+
+[node name="Marker2D3" type="Marker2D" parent="Batches/Batch1" index="1"]
+position = Vector2(-20, 96)
+
+[node name="Batch2" type="Node2D" parent="Batches" index="2"]
+
+[node name="Marker2D4" type="Marker2D" parent="Batches/Batch2" index="0"]
+position = Vector2(1172, 160)
+
+[node name="Marker2D5" type="Marker2D" parent="Batches/Batch2" index="1"]
+position = Vector2(-20, 160)
+
+[node name="Batch3" type="Node2D" parent="Batches" index="3"]
+
+[node name="Marker2D6" type="Marker2D" parent="Batches/Batch3" index="0"]
+position = Vector2(1172, 224)
+
+[node name="Marker2D7" type="Marker2D" parent="Batches/Batch3" index="1"]
+position = Vector2(-20, 224)

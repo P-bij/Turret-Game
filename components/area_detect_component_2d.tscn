@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlhxevay0dl2x"]
+
+[ext_resource type="Script" uid="uid://c7yftwrxaefk5" path="res://components/area_detect_component_2d.gd" id="1_ydox6"]
+
+[node name="AreaDetectComponent2D" type="Area2D"]
+collision_layer = 256
+collision_mask = 64
+script = ExtResource("1_ydox6")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

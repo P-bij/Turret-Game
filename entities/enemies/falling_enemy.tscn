@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgv21dnr4608s"]
+
+[ext_resource type="PackedScene" uid="uid://pemtdc21xuj6" path="res://entities/enemies/alpha_base_enemy.tscn" id="1_n526o"]
+[ext_resource type="Script" uid="uid://23cox2mfv6xg" path="res://entities/enemies/falling_enemy.gd" id="2_g7mhm"]
+[ext_resource type="PackedScene" uid="uid://bby8hscv0dtic" path="res://components/hurtbox_component.tscn" id="4_j4n7e"]
+[ext_resource type="PackedScene" uid="uid://doi8gpo0r842" path="res://components/velocity_component.tscn" id="5_g7mhm"]
+[ext_resource type="Texture2D" uid="uid://bo5a820sup8o8" path="res://assets/images/falling-enemy.png" id="5_ggfxv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g7mhm"]
+height = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nrk0o"]
+size = Vector2(20, 8)
+
+[node name="FallingEnemy" groups=["Enemy"] instance=ExtResource("1_n526o")]
+modulate = Color(0.42352942, 0.76862746, 0.09019608, 1)
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("2_g7mhm")
+speed = 200.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, -16)
+shape = SubResource("CapsuleShape2D_g7mhm")
+
+[node name="HurtboxComponent" parent="." index="1" instance=ExtResource("4_j4n7e")]
+position = Vector2(0, -16)
+collision_layer = 2
+collision_mask = 64
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxComponent" index="0"]
+polygon = PackedVector2Array(0, 16, 6, 16, 6, 14, 3, 14, 3, 0, 4, 0, 10, -6, 10, -16, -10, -16, -10, -6, -4, 0, -3, 0, -3, 14, -6, 14, -6, 16)
+
+[node name="FallingTimer" type="Timer" parent="." index="2"]
+one_shot = true
+autostart = true
+
+[node name="GroundDetectionArea2D" type="Area2D" parent="." index="3"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundDetectionArea2D" index="0"]
+shape = SubResource("RectangleShape2D_nrk0o")
+
+[node name="VelocityComponent" parent="." index="4" instance=ExtResource("5_g7mhm")]
+unique_name_in_owner = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="5"]
+texture = ExtResource("5_ggfxv")
+offset = Vector2(0, -16)
+
+[connection signal="timeout" from="FallingTimer" to="." method="_on_falling_timer_timeout"]
+[connection signal="body_entered" from="GroundDetectionArea2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://chi3kgp44k26s"]
+
+[ext_resource type="PackedScene" uid="uid://pemtdc21xuj6" path="res://entities/enemies/alpha_base_enemy.tscn" id="1_vd5ip"]
+[ext_resource type="Script" uid="uid://cghljj816xa8y" path="res://entities/enemies/testing.gd" id="1_xvah2"]
+[ext_resource type="PackedScene" uid="uid://dlhxevay0dl2x" path="res://components/area_detect_component_2d.tscn" id="2_xvah2"]
+[ext_resource type="PackedScene" uid="uid://doi8gpo0r842" path="res://components/velocity_component.tscn" id="4_7uxnq"]
+[ext_resource type="Script" uid="uid://cd5o5ilf8ytay" path="res://entities/enemies/rotating_node.gd" id="5_ahfiy"]
+[ext_resource type="Texture2D" uid="uid://dv43r68jugyll" path="res://assets/images/semi_circle.png" id="6_v05sm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7uxnq"]
+radius = 24.0
+height = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mgxbr"]
+radius = 96.0
+
+[node name="Testing" instance=ExtResource("1_vd5ip")]
+script = ExtResource("1_xvah2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_7uxnq")
+
+[node name="AreaDetectComponent2D" parent="." index="2" instance=ExtResource("2_xvah2")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDetectComponent2D" index="0"]
+shape = SubResource("CircleShape2D_mgxbr")
+
+[node name="Timer" type="Timer" parent="." index="3"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="VelocityComponent" parent="." index="4" instance=ExtResource("4_7uxnq")]
+unique_name_in_owner = true
+
+[node name="rotatingNode" type="Node2D" parent="." index="5"]
+script = ExtResource("5_ahfiy")
+
+[node name="RightArea2D" type="Area2D" parent="rotatingNode" index="0"]
+position = Vector2(0, -22)
+collision_layer = 256
+collision_mask = 64
+
+[node name="Sprite2D" type="Sprite2D" parent="rotatingNode/RightArea2D" index="0"]
+position = Vector2(0, -40)
+scale = Vector2(4, 4)
+texture = ExtResource("6_v05sm")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="rotatingNode/RightArea2D" index="1"]
+position = Vector2(0, -40)
+scale = Vector2(4, 4)
+polygon = PackedVector2Array(-9, -15.5, -21.5, -8.5, -27.5, -1.5, -32, 7.5, -32, 15.5, 32, 15.5, 32, 7.5, 28, -1, 22, -8.5, 9, -15.5)
+
+[node name="LeftArea2D" type="Area2D" parent="rotatingNode" index="1"]
+position = Vector2(0, 24)
+rotation = 3.1415927
+collision_layer = 256
+collision_mask = 64
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="rotatingNode/LeftArea2D" index="0"]
+position = Vector2(0, -40)
+scale = Vector2(4, 4)
+polygon = PackedVector2Array(-9, -15.5, -21.5, -8.5, -27.5, -1.5, -32, 7.5, -32, 15.5, 32, 15.5, 32, 7.5, 28, -1, 22, -8.5, 9, -15.5)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="rotatingNode/RightArea2D" to="AreaDetectComponent2D" method="_on_right_area_2d_area_entered"]
+[connection signal="area_entered" from="rotatingNode/LeftArea2D" to="AreaDetectComponent2D" method="_on_left_area_2d_area_entered"]

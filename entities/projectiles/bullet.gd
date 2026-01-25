@@ -5,8 +5,7 @@ enum Owners {PLAYER, ENEMY}
 var bullet_layer: int = 0
 var bullet_mask: int = 0
 var bullet_velocity: Vector2
-var my_direction
-var bullet_owner
+var my_direction: Vector2
 var bullet_speed : float = 500.0
 var piercing: bool = false
 

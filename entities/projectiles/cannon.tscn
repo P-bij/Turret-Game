@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://ujlfmucs8b7u"]
+[gd_scene load_steps=3 format=3 uid="uid://ujlfmucs8b7u"]
 
+[ext_resource type="Script" uid="uid://b00nodeeqhthh" path="res://entities/projectiles/cannon_class.gd" id="1_bsdej"]
 [ext_resource type="Texture2D" uid="uid://c6h1k6ejx0dak" path="res://assets/images/gun.png" id="1_k8ag1"]
 
 [node name="Cannon" type="Node2D"]
+script = ExtResource("1_bsdej")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true

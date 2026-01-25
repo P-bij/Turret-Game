@@ -1,59 +1,66 @@
 extends Area2D
 
-var bullet_position:Vector2
-var helicopter_position: Vector2
 @export var min_distance: float = 25
 @export var max_distance: float = 50.0
-@onready var papa := get_parent()
+@onready var papa: EnemyClass = get_parent()
+
+var player: StaticBody2D = null
+var bullet_position:Vector2
+var helicopter_position: Vector2
+var move_direction: bool = false
+var on_the_right: bool = false
+
+
+func _ready() -> void:
+	player = get_tree().get_first_node_in_group("Player")
+	helicopter_position = global_position
+
 
 func _on_area_entered(area: Area2D) -> void:
-	helicopter_position = global_position
 	var area_groups: Array[StringName] = area.get_groups()
 	if area_groups:
 		var area_group: StringName = area_groups[0]
-		print(area_group)
-		if area_group == "Plane":
-			GSignals.helicopter_dodge.emit(aircraft_detection(area), papa)
-		match papa.state:
-			papa.States.HOMING_IN:
-				match area_group:
-					"PlayerBullet":
-						GSignals.helicopter_dodge.emit(bullet_detection(area), papa)
-					"Enemy":
-						GSignals.helicopter_dodge.emit(aircraft_detection(area), papa)
-			_:
-				if area_group == "PlayerBullet":
-						GSignals.helicopter_dodge.emit(bullet_detection(area), papa)
+		match area_group:
+			"PlayerBullet":
+				bullet_detection(area)
+			"Helicopter":
+				helicopter_detection()
+			"Plane":
+				plane_detection()
+			"FallingEnemy":
+				falling_enemy_detection(area)
 
 
-func aircraft_detection(area: Area2D) -> Vector2:
-	var other_helicopter_position = area.global_position
-	var direction_away = helicopter_position.direction_to(
-		other_helicopter_position)
-	return perp_movement(direction_away)
+func falling_enemy_detection(area: Area2D):
+	var new_velocity = area.get_parent().velocity
+	perp_movement(new_velocity)
+	
 
 
-func bullet_detection(area: Area2D) -> Vector2:
-	var direction = area.my_direction
-	return perp_movement(direction)
+func plane_detection() -> void:
+	var my_velocity = Vector2(0,1)
+	GSignals.helicopter_dodge.emit(my_velocity, papa)
+
+func helicopter_detection() -> void:
+	var my_velocity = papa.velocity
+	perp_movement(my_velocity)
 
 
-func perp_movement(dir: Vector2) -> Vector2:
-	var rand_direction :int = randi() % 2
-	var perpendicular_direction: Vector2
-	if rand_direction:
-		perpendicular_direction = Vector2(
-			dir.y * -1,
-			dir.x
-		)
+func bullet_detection(area: Area2D) -> void:
+	var bullet_velocity: Vector2 = area.bullet_velocity
+	perp_movement(bullet_velocity)
+
+
+func perp_movement(vel: Vector2) -> void:
+	if player:
+		var new_velocity: Vector2
+		var rot_deg: int = 90
+		if on_the_right:
+			rot_deg = rot_deg * -1
+		new_velocity = vel.rotated(deg_to_rad(rot_deg))
+		GSignals.helicopter_dodge.emit(new_velocity, papa)
 	else:
-		perpendicular_direction = Vector2(
-			dir.y, dir.x * -1
-		)
-	var dodge_distance = randf_range(min_distance, max_distance)
-	var new_position: Vector2 = helicopter_position + (
-		perpendicular_direction * dodge_distance)
-	return new_position
+		GSignals.helicopter_stop.emit(papa)
 
 
 func _on_area_exited(area: Area2D) -> void:
@@ -63,3 +70,13 @@ func _on_area_exited(area: Area2D) -> void:
 		match area_group:
 			"Enemy":
 				papa.start_the_helicopter(papa)
+
+
+func _on_left_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("PlayerBullet"):
+		on_the_right = false
+
+
+func _on_right_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("PlayerBullet"):
+		on_the_right = true

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg2ft32ettnj6"]
+
+[ext_resource type="Script" uid="uid://bagwjxvsfgclt" path="res://waves/waves.gd" id="1_b4ssh"]
+
+[node name="Waves" type="Node2D"]
+script = ExtResource("1_b4ssh")
+
+[node name="BatchTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Batches" type="Node2D" parent="."]
+
+[connection signal="timeout" from="BatchTimer" to="." method="_on_batch_timer_timeout"]

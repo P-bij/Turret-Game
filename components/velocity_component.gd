@@ -4,7 +4,7 @@ extends Node2D
 @export var knockback_acceleration: float = 15.0
 @export var acceleration: float = 10.0
 
-@onready var max_speed = get_parent().speed
+@onready var max_speed: float = get_parent().speed
 
 var velocity: Vector2 = Vector2.ZERO:
 	set(value):

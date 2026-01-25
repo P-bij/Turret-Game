@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://d27v0s5ydqapo"]
+
+[ext_resource type="Script" uid="uid://cbltcfk7sgg35" path="res://components/flip_component.gd" id="1_6cwgc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6cwgc"]
+size = Vector2(1450, 1500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6cj2i"]
+size = Vector2(1450, 1500)
+
+[node name="FlipComponent" type="Node2D"]
+script = ExtResource("1_6cwgc")
+
+[node name="RightArea2D" type="Area2D" parent="."]
+position = Vector2(800, 0)
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArea2D"]
+position = Vector2(-75, 0)
+shape = SubResource("RectangleShape2D_6cwgc")
+
+[node name="LeftArea2D" type="Area2D" parent="."]
+position = Vector2(-800, 0)
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArea2D"]
+position = Vector2(75, 0)
+shape = SubResource("RectangleShape2D_6cj2i")
+
+[connection signal="body_entered" from="RightArea2D" to="." method="_on_right_area_2d_body_entered"]
+[connection signal="body_entered" from="LeftArea2D" to="." method="_on_left_area_2d_body_entered"]

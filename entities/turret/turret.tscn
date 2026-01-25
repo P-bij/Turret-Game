@@ -1,18 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://txfaofpvs50r"]
+[gd_scene load_steps=11 format=3 uid="uid://txfaofpvs50r"]
 
 [ext_resource type="Script" uid="uid://s78mh7raqsks" path="res://entities/turret/turret.gd" id="1_coqkk"]
 [ext_resource type="Texture2D" uid="uid://bcw0mwpjsgdik" path="res://assets/images/circle.png" id="2_2kw7u"]
-[ext_resource type="Texture2D" uid="uid://btmbtggfhf5v6" path="res://assets/box.png" id="3_mhatg"]
+[ext_resource type="Texture2D" uid="uid://btmbtggfhf5v6" path="res://assets/images/box.png" id="3_mhatg"]
 [ext_resource type="PackedScene" uid="uid://ujlfmucs8b7u" path="res://entities/projectiles/cannon.tscn" id="4_kqd58"]
-[ext_resource type="Script" uid="uid://caw0ofb6f6nby" path="res://entities/turret/player_cannon.gd" id="5_un5sm"]
+[ext_resource type="PackedScene" uid="uid://bby8hscv0dtic" path="res://components/hurtbox_component.tscn" id="5_un5sm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8xk5y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rcf7x"]
 size = Vector2(32, 15)
 
+[sub_resource type="GDScript" id="GDScript_kqd58"]
+script/source = "extends Cannon
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_56xmk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dv8dn"]
+size = Vector2(32, 15)
+
 [node name="Turret" type="StaticBody2D" groups=["Player"]]
-collision_layer = 0
+collision_layer = 32
+collision_mask = 2
 script = ExtResource("1_coqkk")
 
 [node name="Circle" type="CollisionShape2D" parent="."]
@@ -34,7 +44,19 @@ texture = ExtResource("3_mhatg")
 [node name="Cannon" parent="." instance=ExtResource("4_kqd58")]
 unique_name_in_owner = true
 position = Vector2(0, -16.5)
-script = ExtResource("5_un5sm")
+script = SubResource("GDScript_kqd58")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="HurtboxComponent" parent="." instance=ExtResource("5_un5sm")]
+health = 500
+bullet_group = "EnemyBullet"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, -15)
+shape = SubResource("CircleShape2D_56xmk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_dv8dn")

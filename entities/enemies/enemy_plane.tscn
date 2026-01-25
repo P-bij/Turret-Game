@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmc76mwxncu4"]
+[gd_scene load_steps=8 format=3 uid="uid://dmc76mwxncu4"]
 
 [ext_resource type="PackedScene" uid="uid://pemtdc21xuj6" path="res://entities/enemies/alpha_base_enemy.tscn" id="1_1wqjf"]
 [ext_resource type="Script" uid="uid://chjlgjjnx0m6n" path="res://entities/enemies/enemy_plane.gd" id="2_ia5sl"]
 [ext_resource type="PackedScene" uid="uid://bby8hscv0dtic" path="res://components/hurtbox_component.tscn" id="3_s4x86"]
+[ext_resource type="PackedScene" uid="uid://d27v0s5ydqapo" path="res://components/flip_component.tscn" id="4_ia5sl"]
+[ext_resource type="Texture2D" uid="uid://ceh6a6dn4do8h" path="res://assets/images/plane.png" id="5_8dbd3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1wqjf"]
 radius = 24.0
@@ -11,23 +13,40 @@ height = 64.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_s4x86"]
 radius = 38.052597
 
-[node name="EnemyPlane" groups=["Enemy"] instance=ExtResource("1_1wqjf")]
+[node name="EnemyPlane" groups=["Enemy", "Plane"] instance=ExtResource("1_1wqjf")]
 script = ExtResource("2_ia5sl")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_1wqjf")
 
-[node name="HurtboxComponent" parent="." index="2" instance=ExtResource("3_s4x86")]
+[node name="HurtboxComponent" parent="." index="1" instance=ExtResource("3_s4x86")]
 collision_layer = 2
 collision_mask = 64
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxComponent" index="0"]
 polygon = PackedVector2Array(32, -2, 32, 8, 16, 8, 2, 24, -16, 24, 0, 8, -16, 8, -32, -8, -32, -24, -16, -8, -2, -8, -18, -24, -2, -24, 14, -8)
 
-[node name="Area2D" type="Area2D" parent="." index="3" groups=["Plane"]]
+[node name="ParatrooperTimer" type="Timer" parent="." index="2"]
+unique_name_in_owner = true
+wait_time = 3.0
+
+[node name="FlipComponent" parent="." index="3" node_paths=PackedStringArray("nodes_to_flip") instance=ExtResource("4_ia5sl")]
+visible = false
+nodes_to_flip = [NodePath("..")]
+continuous_flip = false
+
+[node name="Area2D" type="Area2D" parent="." index="4" groups=["Plane"]]
 collision_layer = 256
-collision_mask = 256
+collision_mask = 258
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 shape = SubResource("CircleShape2D_s4x86")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="5"]
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="6"]
+texture = ExtResource("5_8dbd3")
+
+[connection signal="timeout" from="ParatrooperTimer" to="." method="_on_paratrooper_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

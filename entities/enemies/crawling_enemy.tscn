@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://b42phmvcpl3ey"]
+
+[ext_resource type="PackedScene" uid="uid://pemtdc21xuj6" path="res://entities/enemies/alpha_base_enemy.tscn" id="1_b6ea8"]
+[ext_resource type="Script" uid="uid://cvxgfkbd6ewer" path="res://entities/enemies/crawling_enemy.gd" id="2_syvqw"]
+[ext_resource type="PackedScene" uid="uid://doi8gpo0r842" path="res://components/velocity_component.tscn" id="4_47maq"]
+[ext_resource type="PackedScene" uid="uid://bby8hscv0dtic" path="res://components/hurtbox_component.tscn" id="5_bc3i1"]
+[ext_resource type="Texture2D" uid="uid://bje564dnomohs" path="res://assets/animations/crawling-man.png" id="6_bc3i1"]
+[ext_resource type="PackedScene" uid="uid://d27v0s5ydqapo" path="res://components/flip_component.tscn" id="6_exfvf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bc3i1"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exfvf"]
+size = Vector2(32.040672, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0yef"]
+atlas = ExtResource("6_bc3i1")
+region = Rect2(0, 0, 331, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73so3"]
+atlas = ExtResource("6_bc3i1")
+region = Rect2(331, 0, 331, 170)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u16ee"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0yef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73so3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="CrawlingEnemy" instance=ExtResource("1_b6ea8")]
+modulate = Color(0.42352942, 0.76862746, 0.09019608, 1)
+script = ExtResource("2_syvqw")
+
+[node name="CrawlTimer" type="Timer" parent="." index="0"]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_bc3i1")
+
+[node name="VelocityComponent" parent="." index="2" instance=ExtResource("4_47maq")]
+
+[node name="HurtboxComponent" parent="." index="3" instance=ExtResource("5_bc3i1")]
+scale = Vector2(-1, 1)
+collision_layer = 2
+collision_mask = 64
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+position = Vector2(-0.023860931, -6)
+shape = SubResource("RectangleShape2D_exfvf")
+
+[node name="FlipComponent" parent="." index="4" node_paths=PackedStringArray("nodes_to_flip") instance=ExtResource("6_exfvf")]
+nodes_to_flip = [NodePath("..")]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." index="5"]
+position = Vector2(0, -6)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_u16ee")
+autoplay = "default"
+frame_progress = 0.83320934
+
+[node name="Area2D" type="Area2D" parent="." index="6"]
+collision_layer = 2
+collision_mask = 32
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-0.023860931, -6)
+shape = SubResource("RectangleShape2D_exfvf")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
