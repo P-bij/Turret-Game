@@ -20,6 +20,7 @@ radius = 82.02438
 
 [node name="EnemyHelicopter" groups=["Helicopter"] instance=ExtResource("1_tyqcc")]
 collision_mask = 154
+platform_floor_layers = 4294901875
 script = ExtResource("2_wukrc")
 speed = 400.0
 
@@ -54,23 +55,19 @@ shape = SubResource("CapsuleShape2D_7iigk")
 
 [node name="EnemyHelicopterVisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="2"]
 
-[node name="Cannon" parent="." index="3" instance=ExtResource("7_qfqgq")]
-unique_name_in_owner = true
-script = ExtResource("8_181eh")
-
-[node name="ReloadTimer" type="Timer" parent="." index="4"]
+[node name="ReloadTimer" type="Timer" parent="." index="3"]
 unique_name_in_owner = true
 wait_time = 0.3
 one_shot = true
 
-[node name="DodgeTimer" type="Timer" parent="." index="5"]
+[node name="DodgeTimer" type="Timer" parent="." index="4"]
 unique_name_in_owner = true
 
-[node name="HomingTimer" type="Timer" parent="." index="6"]
+[node name="HomingTimer" type="Timer" parent="." index="5"]
 unique_name_in_owner = true
 autostart = true
 
-[node name="AreaDetectionComponent" type="Area2D" parent="." index="7" groups=["Enemy"]]
+[node name="AreaDetectionComponent" type="Area2D" parent="." index="6" groups=["Helicopter"]]
 position = Vector2(1, 0)
 collision_layer = 256
 collision_mask = 336
@@ -79,8 +76,7 @@ script = ExtResource("5_ph32j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDetectionComponent" index="0"]
 shape = SubResource("CircleShape2D_7iigk")
 
-[node name="HurtboxComponent" parent="." index="8" instance=ExtResource("4_kcquq")]
-visible = false
+[node name="HurtboxComponent" parent="." index="7" instance=ExtResource("4_kcquq")]
 collision_layer = 2
 collision_mask = 64
 health = 2
@@ -88,15 +84,19 @@ health = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxComponent" index="0"]
 polygon = PackedVector2Array(32, -2, 32, 8, 16, 8, 2, 24, -16, 24, 0, 8, -16, 8, -32, -8, -32, -24, -16, -8, -2, -8, -18, -24, -2, -24, 14, -8)
 
-[node name="VelocityComponent" parent="." index="9" instance=ExtResource("3_13hcp")]
+[node name="VelocityComponent" parent="." index="8" instance=ExtResource("3_13hcp")]
 unique_name_in_owner = true
 
-[node name="FlipComponent" parent="." index="10" node_paths=PackedStringArray("nodes_to_flip") instance=ExtResource("9_181eh")]
-nodes_to_flip = [null, NodePath("../HurtboxComponent")]
+[node name="FlipComponent" parent="." index="9" node_paths=PackedStringArray("nodes_to_flip") instance=ExtResource("9_181eh")]
+nodes_to_flip = [NodePath("../Sprite2D"), NodePath("../HurtboxComponent"), NodePath("../rotatingNode")]
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="11"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="10"]
 modulate = Color(0, 0, 0, 1)
 texture = ExtResource("10_b3qkh")
+
+[node name="Cannon" parent="." index="11" instance=ExtResource("7_qfqgq")]
+unique_name_in_owner = true
+script = ExtResource("8_181eh")
 
 [connection signal="area_entered" from="rotatingNode/RightArea2D" to="AreaDetectionComponent" method="_on_right_area_2d_area_entered"]
 [connection signal="area_entered" from="rotatingNode/LeftArea2D" to="AreaDetectionComponent" method="_on_left_area_2d_area_entered"]

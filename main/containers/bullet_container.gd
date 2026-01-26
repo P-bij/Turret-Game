@@ -14,6 +14,6 @@ func create_bullet(
 	bullet.global_rotation = rot
 	bullet.bullet_layer = layer
 	bullet.bullet_mask = mask
-	bullet.add_to_group(group)
+	bullet.add_to_group(group, true)
 	add_child(bullet)
 	

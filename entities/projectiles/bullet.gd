@@ -1,5 +1,7 @@
 extends Area2D
 
+@export var hitbox: HitboxComponent 
+
 enum Owners {PLAYER, ENEMY}
 
 var bullet_layer: int = 0
@@ -13,6 +15,9 @@ var piercing: bool = false
 func _ready() -> void:
 	set_collision_mask(bullet_mask)
 	set_collision_layer(bullet_layer)
+
+	hitbox.set_mask(bullet_mask)
+	hitbox.set_layer(bullet_layer)
 
 
 func _process(delta: float) -> void:

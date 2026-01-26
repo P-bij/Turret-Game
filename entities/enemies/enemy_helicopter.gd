@@ -10,7 +10,7 @@ enum States {HOMING_IN, SHOOTING, DODGING, MOVE_AWAY_FROM_WALL, IDLE}
 @export var fire_rate: float = 2.0
 @export var bullet_capacity: int = 10
 
-@onready var velocity_componenet :VelocityComponent = %VelocityComponent
+@onready var velocity_component :VelocityComponent = %VelocityComponent
 @onready var cannon: Node2D = %Cannon
 @onready var reload_timer: Timer = %ReloadTimer
 @onready var dodge_timer: Timer = %DodgeTimer
@@ -49,20 +49,20 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	velocity_componenet.move(self)
+	velocity_component.move(self)
 	if player == null:
 		state = States.IDLE
 	match state:
 		States.HOMING_IN:
 			move_towards_target(States.SHOOTING)
 		States.SHOOTING:
-			velocity_componenet.decelerate()
+			velocity_component.decelerate()
 		States.DODGING:
 			start_dodging()
 		States.MOVE_AWAY_FROM_WALL:
-			velocity_componenet.accelerate_to_velocity(total_amount_to_move_from_wall)
+			velocity_component.accelerate_to_velocity(total_amount_to_move_from_wall)
 		_:
-			velocity_componenet.decelerate()
+			velocity_component.decelerate()
 
 
 func state_machine(new_state) -> void:
@@ -94,14 +94,14 @@ func state_machine(new_state) -> void:
 
 
 func start_dodging() -> void:
-	velocity_componenet.accelerate_to_velocity(target)
+	velocity_component.accelerate_to_velocity(target)
 
 
 func move_towards_target(new_state) -> void:
 	distance_to_target = global_position.distance_to(target)
 	# Either Move towards the turret or stop and shoot
 	if distance_to_target > desired_distance:
-		velocity_componenet.accelerate_to_velocity(direction_to_target)
+		velocity_component.accelerate_to_velocity(direction_to_target)
 	else:
 		state_machine(new_state)
 
@@ -122,7 +122,7 @@ func begin_dodge(new_target: Vector2, papa: Node2D) -> void:
 
 
 func we_dodgin() -> void:
-	velocity_componenet.decelerate()
+	velocity_component.decelerate()
 
 
 func we_shootin() -> void:
@@ -131,7 +131,7 @@ func we_shootin() -> void:
 		GSignals.bullet_fired.emit(
 			cannon.global_rotation + ROT_FIX, 
 			cannon.bullet_marker.global_position,
-			1, 32, "EnemyBullet")
+			4, 32, "EnemyBullet")
 		state_machine(States.SHOOTING)
 	else:
 		reload_timer.start(reload_time)

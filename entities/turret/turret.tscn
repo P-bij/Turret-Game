@@ -4,16 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://bcw0mwpjsgdik" path="res://assets/images/circle.png" id="2_2kw7u"]
 [ext_resource type="Texture2D" uid="uid://btmbtggfhf5v6" path="res://assets/images/box.png" id="3_mhatg"]
 [ext_resource type="PackedScene" uid="uid://ujlfmucs8b7u" path="res://entities/projectiles/cannon.tscn" id="4_kqd58"]
+[ext_resource type="Script" uid="uid://1luo4po37lga" path="res://entities/projectiles/cannon.gd" id="5_56xmk"]
 [ext_resource type="PackedScene" uid="uid://bby8hscv0dtic" path="res://components/hurtbox_component.tscn" id="5_un5sm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8xk5y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rcf7x"]
 size = Vector2(32, 15)
-
-[sub_resource type="GDScript" id="GDScript_kqd58"]
-script/source = "extends Cannon
-"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_56xmk"]
 
@@ -44,14 +41,15 @@ texture = ExtResource("3_mhatg")
 [node name="Cannon" parent="." instance=ExtResource("4_kqd58")]
 unique_name_in_owner = true
 position = Vector2(0, -16.5)
-script = SubResource("GDScript_kqd58")
+script = ExtResource("5_56xmk")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("5_un5sm")]
+collision_layer = 32
+collision_mask = 4
 health = 500
-bullet_group = "EnemyBullet"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(0, -15)

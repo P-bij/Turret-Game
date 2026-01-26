@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://baw81ctk6sjab"]
+
+[ext_resource type="PackedScene" uid="uid://pemtdc21xuj6" path="res://entities/enemies/alpha_base_enemy.tscn" id="1_7kpub"]
+[ext_resource type="Texture2D" uid="uid://nc7ipayewpgk" path="res://assets/images/missile.png" id="2_dbq0r"]
+[ext_resource type="Script" uid="uid://dc3oitkmfntuh" path="res://entities/enemies/missile.gd" id="2_igmkw"]
+[ext_resource type="PackedScene" uid="uid://bby8hscv0dtic" path="res://components/hurtbox_component.tscn" id="3_igmkw"]
+[ext_resource type="PackedScene" uid="uid://vr2saulwoqxf" path="res://components/hitbox_component.tscn" id="5_dbq0r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pphte"]
+radius = 2.0
+height = 12.913902
+
+[node name="Missile" instance=ExtResource("1_7kpub")]
+script = ExtResource("2_igmkw")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+rotation = 1.5707964
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_dbq0r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(1.5, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_pphte")
+
+[node name="HurtboxComponent" parent="." index="2" instance=ExtResource("3_igmkw")]
+collision_layer = 2
+collision_mask = 64
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxComponent" index="0"]
+rotation = 1.5707964
+scale = Vector2(0.1, 0.1)
+polygon = PackedVector2Array(2.2656248, -79.84375, -2.3437498, -79.921875, -7.0312495, -77.421875, -11.874999, -70.9375, -16.249998, -59.765625, -18.749998, -42.421875, -19.140623, -10.781258, -16.05967, 11.84227, -13.437499, 23.124989, -21.171873, 30.703114, -26.562498, 37.49999, -31.796871, 49.06249, -32.187496, 55.23436, -20.937498, 41.953114, 23.749998, 41.953114, 31.953121, 52.187485, 31.796871, 44.453114, 26.249998, 34.609364, 20.312498, 27.968739, 13.281249, 23.124989, 16.254137, 11.95565, 18.828123, -10.937508, 19.374998, -42.65625, 16.36751, -59.134735, 12.968749, -69.53125, 7.2656245, -76.796875)
+
+[node name="HitboxComponent" parent="." index="3" instance=ExtResource("5_dbq0r")]
+collision_layer = 4
+collision_mask = 32
+damage = 30
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxComponent" index="0"]
+rotation = 1.5707964
+scale = Vector2(0.1, 0.1)
+polygon = PackedVector2Array(2.2656248, -79.84375, -2.3437498, -79.921875, -7.0312495, -77.421875, -11.874999, -70.9375, -16.249998, -59.765625, -18.749998, -42.421875, -19.140623, -10.781258, -16.05967, 11.84227, -13.437499, 23.124989, -21.171873, 30.703114, -26.562498, 37.49999, -31.796871, 49.06249, -32.187496, 55.23436, -20.937498, 41.953114, 23.749998, 41.953114, 31.953121, 52.187485, 31.796871, 44.453114, 26.249998, 34.609364, 20.312498, 27.968739, 13.281249, 23.124989, 16.254137, 11.95565, 18.828123, -10.937508, 19.374998, -42.65625, 16.36751, -59.134735, 12.968749, -69.53125, 7.2656245, -76.796875)

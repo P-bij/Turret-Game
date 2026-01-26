@@ -1,17 +1,18 @@
-[gd_scene load_steps=22 format=3 uid="uid://dqw5tvtpg06da"]
+[gd_scene load_steps=23 format=3 uid="uid://dqw5tvtpg06da"]
 
-[ext_resource type="PackedScene" uid="uid://ckf7t25wu03rx" path="res://assets/main/ground.tscn" id="1_c651c"]
+[ext_resource type="PackedScene" uid="uid://ckf7t25wu03rx" path="res://main/ground.tscn" id="1_c651c"]
 [ext_resource type="PackedScene" uid="uid://txfaofpvs50r" path="res://entities/turret/turret.tscn" id="2_3wy1v"]
-[ext_resource type="Script" uid="uid://qe2c5asyj4oh" path="res://assets/main/containers/turret_container.gd" id="2_4dugh"]
-[ext_resource type="Script" uid="uid://pjxoqpi82rjn" path="res://assets/main/containers/bullet_container.gd" id="3_kfbq2"]
-[ext_resource type="Script" uid="uid://dkvgpvjh57g7y" path="res://assets/main/containers/enemy_container.gd" id="4_4dugh"]
-[ext_resource type="Script" uid="uid://ct1gmxpyyueay" path="res://assets/main/containers/fireworks_container.gd" id="4_bsumw"]
-[ext_resource type="Script" uid="uid://x81q53847pew" path="res://assets/main/world_walls.gd" id="5_3wy1v"]
-[ext_resource type="Script" uid="uid://covhjruv265rv" path="res://assets/main/containers/impact_container.gd" id="5_fwcvl"]
-[ext_resource type="Script" uid="uid://dmifidqw8045c" path="res://assets/main/containers/wave_container.gd" id="6_grrlh"]
+[ext_resource type="Script" uid="uid://qe2c5asyj4oh" path="res://main/containers/turret_container.gd" id="2_4dugh"]
+[ext_resource type="Script" uid="uid://pjxoqpi82rjn" path="res://main/containers/bullet_container.gd" id="3_kfbq2"]
+[ext_resource type="Script" uid="uid://dkvgpvjh57g7y" path="res://main/containers/enemy_container.gd" id="4_4dugh"]
+[ext_resource type="Script" uid="uid://ct1gmxpyyueay" path="res://main/containers/fireworks_container.gd" id="4_bsumw"]
+[ext_resource type="Script" uid="uid://x81q53847pew" path="res://main/world_walls.gd" id="5_3wy1v"]
+[ext_resource type="Script" uid="uid://covhjruv265rv" path="res://main/containers/impact_container.gd" id="5_fwcvl"]
+[ext_resource type="Script" uid="uid://dmifidqw8045c" path="res://main/containers/wave_container.gd" id="6_grrlh"]
 [ext_resource type="PackedScene" uid="uid://bfnof1ribfjrp" path="res://UI/game_over_screen.tscn" id="6_kfbq2"]
 [ext_resource type="PackedScene" uid="uid://du15xjemftrmh" path="res://waves/wave_1_planes.tscn" id="7_0i4oc"]
 [ext_resource type="PackedScene" uid="uid://bnit3bjjbdaph" path="res://waves/wave_2_helicopters.tscn" id="10_fwcvl"]
+[ext_resource type="Script" uid="uid://dtlgi04bladar" path="res://main/test_missile.gd" id="13_na0o7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kfbq2"]
 size = Vector2(329, 905)
@@ -44,6 +45,12 @@ normal = Vector2(-1, 0)
 [node name="Ground" parent="." instance=ExtResource("1_c651c")]
 position = Vector2(0, 416)
 
+[node name="TurretContainer" type="Node2D" parent="."]
+script = ExtResource("2_4dugh")
+
+[node name="Turret" parent="TurretContainer" instance=ExtResource("2_3wy1v")]
+position = Vector2(576, 416)
+
 [node name="BulletContainer" type="Node2D" parent="."]
 script = ExtResource("3_kfbq2")
 
@@ -55,12 +62,6 @@ script = ExtResource("4_bsumw")
 
 [node name="ImpactContainer" type="Node2D" parent="."]
 script = ExtResource("5_fwcvl")
-
-[node name="TurretContainer" type="Node2D" parent="."]
-script = ExtResource("2_4dugh")
-
-[node name="Turret" parent="TurretContainer" instance=ExtResource("2_3wy1v")]
-position = Vector2(576, 416)
 
 [node name="WaveContainer" type="Node2D" parent="."]
 script = ExtResource("6_grrlh")
@@ -164,6 +165,9 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="TestMissile" type="Node2D" parent="."]
+script = ExtResource("13_na0o7")
 
 [connection signal="timeout" from="WaveContainer/WaveTimer" to="WaveContainer" method="_on_wave_timer_timeout"]
 [connection signal="area_entered" from="WorldWalls/LeftWallArea2D" to="WorldWalls" method="_on_left_wall_area_2d_area_entered"]
