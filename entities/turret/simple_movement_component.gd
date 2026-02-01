@@ -11,12 +11,22 @@ var we_can_move: bool = true
 
 
 func _process(delta: float) -> void:
+	movement(delta)
+
+
+func movement(delta: float) -> void:
 	var direction: int = 0
 	if we_can_move:
 		if Input.is_action_pressed("left"):
 			direction = -1
 		elif Input.is_action_pressed("right"):
 			direction = 1
-	
 	cannon.rotation += direction * speed * delta
 	cannon.rotation = clampf(cannon.rotation, minRot, maxRot)
+
+
+func _shortcut_input(event: InputEvent) -> void:
+	if event.is_action_pressed("super"):
+		we_can_move = false
+	if event.is_action_released("super"):
+		we_can_move = true

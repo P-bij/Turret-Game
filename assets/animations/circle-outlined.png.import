@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfevcn877r71q"
-path="res://.godot/imported/circle-outlined.png-45e84881f52ee57f1b72ccc8ac39301b.ctex"
+uid="uid://ntep8n18g02a"
+path="res://.godot/imported/circle-outlined.png-db51af7fa6b2749156bb3e2ca9960915.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/circle-outlined.png"
-dest_files=["res://.godot/imported/circle-outlined.png-45e84881f52ee57f1b72ccc8ac39301b.ctex"]
+source_file="res://assets/animations/circle-outlined.png"
+dest_files=["res://.godot/imported/circle-outlined.png-db51af7fa6b2749156bb3e2ca9960915.ctex"]
 
 [params]
 

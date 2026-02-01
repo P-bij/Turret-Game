@@ -1,5 +1,6 @@
 extends Node
 
+signal beam(pos: Vector2, rot: float)
 signal begin_game_over
 signal begin_the_wave(wave_name: String)
 signal bullet_fired(

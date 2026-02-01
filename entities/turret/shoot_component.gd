@@ -8,13 +8,20 @@ extends Node2D
 @onready var bullet_marker: Marker2D = cannon.bullet_marker
 @onready var shoot_timer: Timer = %ShootTimer
 
+var shooting: bool = false
+
 
 func _shortcut_input(event: InputEvent) -> void:
 	if event.is_action_pressed("shoot") and shoot_timer.is_stopped():
 		shoot()
+	if event.is_action_released("shoot"):
+		shooting = false
+	if event.is_action_pressed("super") and !shooting:
+		GSignals.beam.emit(bullet_marker.global_position, bullet_marker.global_rotation)
 
 
 func shoot() -> void:
+	shooting = true
 	var shoot_cooldown: float = 1 / fire_rate
 	GSignals.bullet_fired.emit(
 		bullet_marker.global_rotation + subtract_rotation_to_fix, 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dqw5tvtpg06da"]
+[gd_scene load_steps=24 format=3 uid="uid://dqw5tvtpg06da"]
 
 [ext_resource type="PackedScene" uid="uid://ckf7t25wu03rx" path="res://main/ground.tscn" id="1_c651c"]
 [ext_resource type="PackedScene" uid="uid://txfaofpvs50r" path="res://entities/turret/turret.tscn" id="2_3wy1v"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://du15xjemftrmh" path="res://waves/wave_1_planes.tscn" id="7_0i4oc"]
 [ext_resource type="PackedScene" uid="uid://bnit3bjjbdaph" path="res://waves/wave_2_helicopters.tscn" id="10_fwcvl"]
 [ext_resource type="Script" uid="uid://dtlgi04bladar" path="res://main/test_missile.gd" id="13_na0o7"]
+[ext_resource type="PackedScene" uid="uid://2tk6q86v7fu6" path="res://assets/effects/beam.tscn" id="14_73k8k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kfbq2"]
 size = Vector2(329, 905)
@@ -168,6 +169,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="TestMissile" type="Node2D" parent="."]
 script = ExtResource("13_na0o7")
+
+[node name="BeamContainer" type="Node2D" parent="."]
+
+[node name="Beam" parent="BeamContainer" instance=ExtResource("14_73k8k")]
 
 [connection signal="timeout" from="WaveContainer/WaveTimer" to="WaveContainer" method="_on_wave_timer_timeout"]
 [connection signal="area_entered" from="WorldWalls/LeftWallArea2D" to="WorldWalls" method="_on_left_wall_area_2d_area_entered"]

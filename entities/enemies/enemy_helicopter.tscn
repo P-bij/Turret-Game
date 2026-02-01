@@ -25,6 +25,7 @@ script = ExtResource("2_wukrc")
 speed = 400.0
 
 [node name="rotatingNode" type="Node2D" parent="." index="0"]
+visible = false
 script = ExtResource("3_qfqgq")
 
 [node name="RightArea2D" type="Area2D" parent="rotatingNode" index="0"]
@@ -50,10 +51,12 @@ scale = Vector2(4, 4)
 polygon = PackedVector2Array(-9, -15.5, -21.5, -8.5, -27.5, -1.5, -32, 7.5, -32, 15.5, 32, 15.5, 32, 7.5, 28, -1, 22, -8.5, 9, -15.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+visible = false
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_7iigk")
 
 [node name="EnemyHelicopterVisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="2"]
+visible = false
 
 [node name="ReloadTimer" type="Timer" parent="." index="3"]
 unique_name_in_owner = true
@@ -68,6 +71,7 @@ unique_name_in_owner = true
 autostart = true
 
 [node name="AreaDetectionComponent" type="Area2D" parent="." index="6" groups=["Helicopter"]]
+visible = false
 position = Vector2(1, 0)
 collision_layer = 256
 collision_mask = 336
@@ -77,6 +81,7 @@ script = ExtResource("5_ph32j")
 shape = SubResource("CircleShape2D_7iigk")
 
 [node name="HurtboxComponent" parent="." index="7" instance=ExtResource("4_kcquq")]
+visible = false
 collision_layer = 2
 collision_mask = 64
 health = 2
@@ -86,8 +91,10 @@ polygon = PackedVector2Array(32, -2, 32, 8, 16, 8, 2, 24, -16, 24, 0, 8, -16, 8,
 
 [node name="VelocityComponent" parent="." index="8" instance=ExtResource("3_13hcp")]
 unique_name_in_owner = true
+visible = false
 
 [node name="FlipComponent" parent="." index="9" node_paths=PackedStringArray("nodes_to_flip") instance=ExtResource("9_181eh")]
+visible = false
 nodes_to_flip = [NodePath("../Sprite2D"), NodePath("../HurtboxComponent"), NodePath("../rotatingNode")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="10"]
