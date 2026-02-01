@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://txfaofpvs50r"]
+[gd_scene load_steps=13 format=3 uid="uid://txfaofpvs50r"]
 
 [ext_resource type="Script" uid="uid://s78mh7raqsks" path="res://entities/turret/turret.gd" id="1_coqkk"]
 [ext_resource type="Texture2D" uid="uid://bcw0mwpjsgdik" path="res://assets/images/circle.png" id="2_2kw7u"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://ujlfmucs8b7u" path="res://entities/projectiles/cannon.tscn" id="4_kqd58"]
 [ext_resource type="Script" uid="uid://1luo4po37lga" path="res://entities/projectiles/cannon.gd" id="5_56xmk"]
 [ext_resource type="PackedScene" uid="uid://bby8hscv0dtic" path="res://components/hurtbox_component.tscn" id="5_un5sm"]
+[ext_resource type="Script" uid="uid://dyejw7x11a0vc" path="res://entities/turret/simple_movement_component.gd" id="7_dv8dn"]
+[ext_resource type="Script" uid="uid://cnk5rxrwkndga" path="res://entities/turret/shoot_component.gd" id="8_i2huv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8xk5y"]
 
@@ -43,7 +45,8 @@ unique_name_in_owner = true
 position = Vector2(0, -16.5)
 script = ExtResource("5_56xmk")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="ShootTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 one_shot = true
 
 [node name="HurtboxComponent" parent="." instance=ExtResource("5_un5sm")]
@@ -58,3 +61,9 @@ shape = SubResource("CircleShape2D_56xmk")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtboxComponent"]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_dv8dn")
+
+[node name="SimpleMovementComponent" type="Node2D" parent="."]
+script = ExtResource("7_dv8dn")
+
+[node name="ShootComponent" type="Node2D" parent="."]
+script = ExtResource("8_i2huv")
