@@ -6,9 +6,8 @@ extends Area2D
 @onready var papa:Node2D = get_parent()
 
 
-func _on_area_entered(area: Area2D) -> void:
-	print(area)
-	if area == HitboxComponent:
-		health -= area.damage
+func _on_area_entered(hitbox: HitboxComponent) -> void:
+	if hitbox != null:
+		health -= hitbox.damage
 		if health <= 0:
 			GSignals.kill_me.emit(papa.name)
