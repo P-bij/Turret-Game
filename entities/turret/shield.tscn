@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dh4d5pwq57k7k"]
+
+[ext_resource type="Script" uid="uid://cubj2s6vxsnr7" path="res://entities/turret/shield.gd" id="1_to16w"]
+[ext_resource type="Texture2D" uid="uid://cfevcn877r71q" path="res://assets/images/circle-outlined.png" id="2_2b8eu"]
+[ext_resource type="PackedScene" uid="uid://vr2saulwoqxf" path="res://components/hitbox_component.tscn" id="3_bvw3l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_681pq"]
+radius = 150.0
+
+[node name="Shield" type="Node2D"]
+scale = Vector2(1e-05, 1e-05)
+script = ExtResource("1_to16w")
+flash_time_seconds = 0.13
+damage_colour = Color(1, 0.22000003, 0.22000003, 0.29803923)
+normal_colour = Color(0.21568628, 1, 1, 0.30588236)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2b8eu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="HitboxComponent" parent="." instance=ExtResource("3_bvw3l")]
+collision_layer = 96
+collision_mask = 4
+damage = 500.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_681pq")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.58
+one_shot = true
+
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

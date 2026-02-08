@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dqw5tvtpg06da"]
+[gd_scene load_steps=25 format=3 uid="uid://dqw5tvtpg06da"]
 
 [ext_resource type="PackedScene" uid="uid://ckf7t25wu03rx" path="res://main/ground.tscn" id="1_c651c"]
 [ext_resource type="PackedScene" uid="uid://txfaofpvs50r" path="res://entities/turret/turret.tscn" id="2_3wy1v"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bnit3bjjbdaph" path="res://waves/wave_2_helicopters.tscn" id="10_fwcvl"]
 [ext_resource type="Script" uid="uid://dtlgi04bladar" path="res://main/test_missile.gd" id="13_na0o7"]
 [ext_resource type="PackedScene" uid="uid://2tk6q86v7fu6" path="res://assets/effects/beam.tscn" id="14_73k8k"]
+[ext_resource type="Script" uid="uid://c3h1wb8xj2rbe" path="res://main/shield_container.gd" id="15_5xyti"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kfbq2"]
 size = Vector2(329, 905)
@@ -42,6 +43,9 @@ normal = Vector2(-1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_67ri8"]
 
 [node name="Main" type="Node2D"]
+
+[node name="ShieldContainer" type="Node2D" parent="."]
+script = ExtResource("15_5xyti")
 
 [node name="Ground" parent="." instance=ExtResource("1_c651c")]
 position = Vector2(0, 416)
