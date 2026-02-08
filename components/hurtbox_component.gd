@@ -1,7 +1,7 @@
 class_name HurtboxComponent
 extends Area2D
 
-@export var health:int = 1
+@export var health:float = 1
 
 @onready var papa:Node2D = get_parent()
 

@@ -1,5 +1,4 @@
 extends EnemyClass
-
 var arc_height: float # position of mouse's y-axis when clicked
 var start_pos: Vector2 # (0, arc_height)
 var end_pos: Vector2 # turret position
@@ -19,7 +18,6 @@ func _process(delta: float) -> void:
 	# to use in formula which rotates the angle of missile 
 	# so that it looks at where it's going
 	var old_pos = global_position
-	
 	arc_movement(delta)
 	
 	# Point towards direction of movement

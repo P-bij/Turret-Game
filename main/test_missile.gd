@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var missile_scene: PackedScene = preload("res://entities/enemies/missile.tscn")
+@onready var missile_scene: PackedScene = preload("res://entities/projectiles/missile.tscn")
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

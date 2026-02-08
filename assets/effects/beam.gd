@@ -12,9 +12,7 @@ func _shortcut_input(event: InputEvent) -> void:
 	if event.is_action_pressed("super"):
 		anim_player.play("charging")
 	if event.is_action_released("super"):
-		print("released")
 		if charged:
-			print("fire")
 			anim_player.play("beam")
 			charged = false
 		else:

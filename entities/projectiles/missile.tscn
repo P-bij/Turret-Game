@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://pemtdc21xuj6" path="res://entities/enemies/alpha_base_enemy.tscn" id="1_7kpub"]
 [ext_resource type="Texture2D" uid="uid://nc7ipayewpgk" path="res://assets/images/missile.png" id="2_dbq0r"]
-[ext_resource type="Script" uid="uid://dc3oitkmfntuh" path="res://entities/enemies/missile.gd" id="2_igmkw"]
+[ext_resource type="Script" uid="uid://dc3oitkmfntuh" path="res://entities/projectiles/missile.gd" id="2_igmkw"]
 [ext_resource type="PackedScene" uid="uid://bby8hscv0dtic" path="res://components/hurtbox_component.tscn" id="3_igmkw"]
 [ext_resource type="PackedScene" uid="uid://vr2saulwoqxf" path="res://components/hitbox_component.tscn" id="5_dbq0r"]
 
@@ -12,6 +12,7 @@ height = 12.913902
 
 [node name="Missile" instance=ExtResource("1_7kpub")]
 script = ExtResource("2_igmkw")
+speed = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 rotation = 1.5707964
@@ -24,7 +25,7 @@ rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_pphte")
 
 [node name="HurtboxComponent" parent="." index="2" instance=ExtResource("3_igmkw")]
-collision_layer = 2
+collision_layer = 6
 collision_mask = 64
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxComponent" index="0"]
@@ -35,7 +36,7 @@ polygon = PackedVector2Array(2.2656248, -79.84375, -2.3437498, -79.921875, -7.03
 [node name="HitboxComponent" parent="." index="3" instance=ExtResource("5_dbq0r")]
 collision_layer = 4
 collision_mask = 32
-damage = 30
+damage = 30.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxComponent" index="0"]
 rotation = 1.5707964
