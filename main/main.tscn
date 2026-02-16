@@ -164,6 +164,9 @@ physics_material_override = SubResource("PhysicsMaterial_kfbq2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldWalls/BottomWallStaticBody2D" unique_id=710201842]
 shape = SubResource("WorldBoundaryShape2D_67ri8")
 
+[node name="MissileContainer" type="Node2D" parent="." unique_id=1990390085]
+script = ExtResource("13_na0o7")
+
 [node name="UI" type="Control" parent="." unique_id=1179620428]
 layout_mode = 3
 anchors_preset = 0
@@ -178,9 +181,6 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="MissileContainer" type="Node2D" parent="." unique_id=1990390085]
-script = ExtResource("13_na0o7")
 
 [connection signal="timeout" from="WaveContainer/WaveTimer" to="WaveContainer" method="_on_wave_timer_timeout"]
 [connection signal="area_entered" from="WorldWalls/LeftWallArea2D" to="WorldWalls" method="_on_left_wall_area_2d_area_entered"]
