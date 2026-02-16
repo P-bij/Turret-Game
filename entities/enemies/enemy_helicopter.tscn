@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://buqptmjqj6p3s"]
+[gd_scene format=3 uid="uid://buqptmjqj6p3s"]
 
 [ext_resource type="PackedScene" uid="uid://pemtdc21xuj6" path="res://entities/enemies/alpha_base_enemy.tscn" id="1_tyqcc"]
 [ext_resource type="Script" uid="uid://cctc5qx6ohyp4" path="res://entities/enemies/enemy_helicopter.gd" id="2_wukrc"]
@@ -18,90 +18,90 @@ height = 64.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_7iigk"]
 radius = 82.02438
 
-[node name="EnemyHelicopter" groups=["Helicopter"] instance=ExtResource("1_tyqcc")]
-collision_mask = 154
+[node name="EnemyHelicopter" unique_id=1372773976 groups=["Helicopter"] instance=ExtResource("1_tyqcc")]
+collision_layer = 256
+collision_mask = 400
 platform_floor_layers = 4294901875
 script = ExtResource("2_wukrc")
 speed = 400.0
 
-[node name="rotatingNode" type="Node2D" parent="." index="0"]
+[node name="rotatingNode" type="Node2D" parent="." index="0" unique_id=1861170532]
 visible = false
 script = ExtResource("3_qfqgq")
 
-[node name="RightArea2D" type="Area2D" parent="rotatingNode" index="0"]
+[node name="RightArea2D" type="Area2D" parent="rotatingNode" index="0" unique_id=36177216]
 position = Vector2(0, -22)
 collision_layer = 256
 collision_mask = 64
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="rotatingNode/RightArea2D" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="rotatingNode/RightArea2D" index="0" unique_id=1473218030]
 position = Vector2(0, -40)
 scale = Vector2(4, 4)
 polygon = PackedVector2Array(-9, -15.5, -21.5, -8.5, -27.5, -1.5, -32, 7.5, -32, 15.5, 32, 15.5, 32, 7.5, 28, -1, 22, -8.5, 9, -15.5)
 
-[node name="LeftArea2D" type="Area2D" parent="rotatingNode" index="1"]
+[node name="LeftArea2D" type="Area2D" parent="rotatingNode" index="1" unique_id=359702982]
 position = Vector2(0, 24)
 rotation = 3.1415927
 collision_layer = 256
 collision_mask = 64
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="rotatingNode/LeftArea2D" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="rotatingNode/LeftArea2D" index="0" unique_id=1303259672]
 modulate = Color(0.34409294, 0.7220274, 0.8532224, 1)
 position = Vector2(0, -40)
 scale = Vector2(4, 4)
 polygon = PackedVector2Array(-9, -15.5, -21.5, -8.5, -27.5, -1.5, -32, 7.5, -32, 15.5, 32, 15.5, 32, 7.5, 28, -1, 22, -8.5, 9, -15.5)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" unique_id=1554263645]
 visible = false
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_7iigk")
 
-[node name="EnemyHelicopterVisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="2"]
+[node name="EnemyHelicopterVisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="2" unique_id=2089679150]
 visible = false
 
-[node name="ReloadTimer" type="Timer" parent="." index="3"]
+[node name="ReloadTimer" type="Timer" parent="." index="3" unique_id=467696479]
 unique_name_in_owner = true
 wait_time = 0.3
 one_shot = true
 
-[node name="DodgeTimer" type="Timer" parent="." index="4"]
+[node name="DodgeTimer" type="Timer" parent="." index="4" unique_id=1370420494]
 unique_name_in_owner = true
 
-[node name="HomingTimer" type="Timer" parent="." index="5"]
+[node name="HomingTimer" type="Timer" parent="." index="5" unique_id=767697764]
 unique_name_in_owner = true
 autostart = true
 
-[node name="AreaDetectionComponent" type="Area2D" parent="." index="6" groups=["Helicopter"]]
+[node name="AreaDetectionComponent" type="Area2D" parent="." index="6" unique_id=1808202476 groups=["Helicopter"]]
 visible = false
 position = Vector2(1, 0)
 collision_layer = 256
 collision_mask = 336
 script = ExtResource("5_ph32j")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDetectionComponent" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDetectionComponent" index="0" unique_id=1286600063]
 shape = SubResource("CircleShape2D_7iigk")
 
-[node name="HurtboxComponent" parent="." index="7" instance=ExtResource("4_kcquq")]
+[node name="HurtboxComponent" parent="." index="7" unique_id=1919642834 instance=ExtResource("4_kcquq")]
 visible = false
 collision_layer = 2
 collision_mask = 64
-health = 2
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxComponent" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxComponent" index="0" unique_id=144741751]
 polygon = PackedVector2Array(32, -2, 32, 8, 16, 8, 2, 24, -16, 24, 0, 8, -16, 8, -32, -8, -32, -24, -16, -8, -2, -8, -18, -24, -2, -24, 14, -8)
 
-[node name="VelocityComponent" parent="." index="8" instance=ExtResource("3_13hcp")]
+[node name="VelocityComponent" parent="." index="8" unique_id=490341551 instance=ExtResource("3_13hcp")]
 unique_name_in_owner = true
 visible = false
 
-[node name="FlipComponent" parent="." index="9" node_paths=PackedStringArray("nodes_to_flip") instance=ExtResource("9_181eh")]
+[node name="FlipComponent" parent="." index="9" unique_id=969634266 node_paths=PackedStringArray("nodes_to_flip") instance=ExtResource("9_181eh")]
 visible = false
 nodes_to_flip = [NodePath("../Sprite2D"), NodePath("../HurtboxComponent"), NodePath("../rotatingNode")]
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="10"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="10" unique_id=24579402]
 modulate = Color(0, 0, 0, 1)
 texture = ExtResource("10_b3qkh")
 
-[node name="Cannon" parent="." index="11" instance=ExtResource("7_qfqgq")]
+[node name="Cannon" parent="." index="11" unique_id=342454285 instance=ExtResource("7_qfqgq")]
 unique_name_in_owner = true
 script = ExtResource("8_181eh")
 
