@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://txfaofpvs50r"]
+[gd_scene format=3 uid="uid://txfaofpvs50r"]
 
 [ext_resource type="Script" uid="uid://s78mh7raqsks" path="res://entities/turret/turret.gd" id="1_coqkk"]
 [ext_resource type="Texture2D" uid="uid://bcw0mwpjsgdik" path="res://assets/images/circle.png" id="2_2kw7u"]
@@ -19,51 +19,51 @@ size = Vector2(32, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dv8dn"]
 size = Vector2(32, 15)
 
-[node name="Turret" type="StaticBody2D" groups=["Player"]]
+[node name="Turret" type="StaticBody2D" unique_id=709973295 groups=["Player"]]
 collision_layer = 32
 collision_mask = 2
 script = ExtResource("1_coqkk")
 
-[node name="Circle" type="CollisionShape2D" parent="."]
+[node name="Circle" type="CollisionShape2D" parent="." unique_id=1044208398]
 position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_8xk5y")
 
-[node name="Sprite2D" type="Sprite2D" parent="Circle"]
+[node name="Sprite2D" type="Sprite2D" parent="Circle" unique_id=848568374]
 modulate = Color(0.39607844, 0.6784314, 1, 1)
 texture = ExtResource("2_2kw7u")
 
-[node name="Box" type="CollisionShape2D" parent="."]
+[node name="Box" type="CollisionShape2D" parent="." unique_id=1136636198]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_rcf7x")
 
-[node name="Sprite2D" type="Sprite2D" parent="Box"]
+[node name="Sprite2D" type="Sprite2D" parent="Box" unique_id=1234484461]
 modulate = Color(0.39607844, 0.6784314, 1, 1)
 texture = ExtResource("3_mhatg")
 
-[node name="Cannon" parent="." instance=ExtResource("4_kqd58")]
+[node name="Cannon" parent="." unique_id=753493680 instance=ExtResource("4_kqd58")]
 unique_name_in_owner = true
 position = Vector2(0, -16.5)
 script = ExtResource("5_56xmk")
 
-[node name="ShootTimer" type="Timer" parent="."]
+[node name="ShootTimer" type="Timer" parent="." unique_id=2123533097]
 unique_name_in_owner = true
 one_shot = true
 
-[node name="HurtboxComponent" parent="." instance=ExtResource("5_un5sm")]
+[node name="HurtboxComponent" parent="." unique_id=1804638779 instance=ExtResource("5_un5sm")]
 collision_layer = 32
 collision_mask = 4
-health = 500
+health = 501.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1447672858]
 position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_56xmk")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtboxComponent"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtboxComponent" unique_id=634728673]
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_dv8dn")
 
-[node name="SimpleMovementComponent" type="Node2D" parent="."]
+[node name="SimpleMovementComponent" type="Node2D" parent="." unique_id=1978609278]
 script = ExtResource("7_dv8dn")
 
-[node name="ShootComponent" type="Node2D" parent="."]
+[node name="ShootComponent" type="Node2D" parent="." unique_id=1185373018]
 script = ExtResource("8_i2huv")

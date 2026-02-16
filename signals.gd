@@ -5,6 +5,7 @@ signal begin_game_over
 signal begin_the_wave(wave_name: String)
 signal bullet_fired(
 	rot: float, pos: Vector2, layer: int, mask: int, group: String)
+signal crawling_enemy_plants_bomb(bomb_position: Vector2)
 signal falling_enemy_spawn(position_to_drop_from: Vector2)
 signal flip_enemy
 signal helicopter_dodge(new_position: Vector2, body: Node2D)

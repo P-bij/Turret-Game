@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b42phmvcpl3ey"]
+[gd_scene format=3 uid="uid://b42phmvcpl3ey"]
 
 [ext_resource type="PackedScene" uid="uid://pemtdc21xuj6" path="res://entities/enemies/alpha_base_enemy.tscn" id="1_b6ea8"]
 [ext_resource type="Script" uid="uid://cvxgfkbd6ewer" path="res://entities/enemies/crawling_enemy.gd" id="2_syvqw"]
@@ -35,44 +35,53 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="CrawlingEnemy" instance=ExtResource("1_b6ea8")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0yef"]
+size = Vector2(17, 20)
+
+[node name="CrawlingEnemy" unique_id=336393130 instance=ExtResource("1_b6ea8")]
 modulate = Color(0.42352942, 0.76862746, 0.09019608, 1)
 script = ExtResource("2_syvqw")
 
-[node name="CrawlTimer" type="Timer" parent="." index="0"]
+[node name="CrawlTimer" type="Timer" parent="." index="0" unique_id=1139433143]
 unique_name_in_owner = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" unique_id=873725247]
+visible = false
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_bc3i1")
 
-[node name="VelocityComponent" parent="." index="2" instance=ExtResource("4_47maq")]
+[node name="VelocityComponent" parent="." index="2" unique_id=755149780 instance=ExtResource("4_47maq")]
 
-[node name="HurtboxComponent" parent="." index="3" instance=ExtResource("5_bc3i1")]
+[node name="HurtboxComponent" parent="." index="3" unique_id=1489690498 instance=ExtResource("5_bc3i1")]
+visible = false
 scale = Vector2(-1, 1)
 collision_layer = 2
 collision_mask = 64
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1063875302]
 position = Vector2(-0.023860931, -6)
 shape = SubResource("RectangleShape2D_exfvf")
 
-[node name="FlipComponent" parent="." index="4" node_paths=PackedStringArray("nodes_to_flip") instance=ExtResource("6_exfvf")]
+[node name="FlipComponent" parent="." index="4" unique_id=1718165764 node_paths=PackedStringArray("nodes_to_flip") instance=ExtResource("6_exfvf")]
+visible = false
 nodes_to_flip = [NodePath("..")]
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="." index="5"]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." index="5" unique_id=416368566]
 position = Vector2(0, -6)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_u16ee")
 autoplay = "default"
-frame_progress = 0.83320934
 
-[node name="Area2D" type="Area2D" parent="." index="6"]
+[node name="DetectionArea2D" type="Area2D" parent="." index="6" unique_id=1529011358]
 collision_layer = 2
 collision_mask = 32
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(-0.023860931, -6)
-shape = SubResource("RectangleShape2D_exfvf")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectionArea2D" index="0" unique_id=788445386]
+position = Vector2(12.5, -6)
+shape = SubResource("RectangleShape2D_l0yef")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="BombMarker2D" type="Marker2D" parent="." index="7" unique_id=934975965]
+position = Vector2(13, 0)
+
+[connection signal="area_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_area_entered"]
+[connection signal="body_entered" from="DetectionArea2D" to="." method="_on_area_2d_body_entered"]

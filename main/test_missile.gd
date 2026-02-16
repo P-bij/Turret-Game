@@ -2,8 +2,9 @@ extends Node2D
 
 @onready var missile_scene: PackedScene = preload("res://entities/projectiles/missile.tscn")
 
+
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
+	if event.is_action_pressed("missile"):
 		spawn_missile(event.position)
 
 

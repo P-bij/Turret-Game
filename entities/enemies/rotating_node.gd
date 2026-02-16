@@ -6,7 +6,7 @@ var player: StaticBody2D = null
 func _ready() -> void:
 	var player_group = get_tree().get_nodes_in_group("Player")
 	if player_group:
-		player = player_group[0]
+		player = get_tree().get_first_node_in_group("Player")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

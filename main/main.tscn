@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dqw5tvtpg06da"]
+[gd_scene format=3 uid="uid://dqw5tvtpg06da"]
 
 [ext_resource type="PackedScene" uid="uid://ckf7t25wu03rx" path="res://main/ground.tscn" id="1_c651c"]
 [ext_resource type="PackedScene" uid="uid://txfaofpvs50r" path="res://entities/turret/turret.tscn" id="2_3wy1v"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://covhjruv265rv" path="res://main/containers/impact_container.gd" id="5_fwcvl"]
 [ext_resource type="Script" uid="uid://dmifidqw8045c" path="res://main/containers/wave_container.gd" id="6_grrlh"]
 [ext_resource type="PackedScene" uid="uid://bfnof1ribfjrp" path="res://UI/game_over_screen.tscn" id="6_kfbq2"]
+[ext_resource type="Script" uid="uid://q3bj4vdjcmkq" path="res://main/bomb_container.gd" id="6_n3o0a"]
 [ext_resource type="PackedScene" uid="uid://du15xjemftrmh" path="res://waves/wave_1_planes.tscn" id="7_0i4oc"]
 [ext_resource type="PackedScene" uid="uid://bnit3bjjbdaph" path="res://waves/wave_2_helicopters.tscn" id="10_fwcvl"]
 [ext_resource type="Script" uid="uid://dtlgi04bladar" path="res://main/test_missile.gd" id="13_na0o7"]
@@ -42,126 +43,133 @@ normal = Vector2(-1, 0)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_67ri8"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=620592257]
 
-[node name="ShieldContainer" type="Node2D" parent="."]
+[node name="ShieldContainer" type="Node2D" parent="." unique_id=1569766621]
 script = ExtResource("15_5xyti")
 
-[node name="Ground" parent="." instance=ExtResource("1_c651c")]
+[node name="Ground" parent="." unique_id=1197645194 instance=ExtResource("1_c651c")]
 position = Vector2(0, 416)
 
-[node name="TurretContainer" type="Node2D" parent="."]
+[node name="TurretContainer" type="Node2D" parent="." unique_id=910159906]
 script = ExtResource("2_4dugh")
 
-[node name="Turret" parent="TurretContainer" instance=ExtResource("2_3wy1v")]
+[node name="Turret" parent="TurretContainer" unique_id=1487887694 instance=ExtResource("2_3wy1v")]
 position = Vector2(576, 416)
 
-[node name="BulletContainer" type="Node2D" parent="."]
+[node name="BeamContainer" type="Node2D" parent="." unique_id=609686138]
+
+[node name="Beam" parent="BeamContainer" unique_id=2130131826 instance=ExtResource("14_73k8k")]
+
+[node name="BulletContainer" type="Node2D" parent="." unique_id=68451340]
 script = ExtResource("3_kfbq2")
 
-[node name="EnemyContainer" type="Node2D" parent="."]
+[node name="EnemyContainer" type="Node2D" parent="." unique_id=1871172871]
 script = ExtResource("4_4dugh")
 
-[node name="FireworksContainer" type="Node2D" parent="."]
+[node name="BombContainer" type="Node2D" parent="." unique_id=532439243]
+script = ExtResource("6_n3o0a")
+
+[node name="FireworksContainer" type="Node2D" parent="." unique_id=1531354714]
 script = ExtResource("4_bsumw")
 
-[node name="ImpactContainer" type="Node2D" parent="."]
+[node name="ImpactContainer" type="Node2D" parent="." unique_id=1695991490]
 script = ExtResource("5_fwcvl")
 
-[node name="WaveContainer" type="Node2D" parent="."]
+[node name="WaveContainer" type="Node2D" parent="." unique_id=1799899529]
 script = ExtResource("6_grrlh")
 
-[node name="WaveTimer" type="Timer" parent="WaveContainer"]
+[node name="WaveTimer" type="Timer" parent="WaveContainer" unique_id=1238692851]
 unique_name_in_owner = true
 
-[node name="Wave1Planes" parent="WaveContainer" instance=ExtResource("7_0i4oc")]
+[node name="Wave1Planes" parent="WaveContainer" unique_id=1801824429 instance=ExtResource("7_0i4oc")]
 
-[node name="Wave2Helicopters" parent="WaveContainer" instance=ExtResource("10_fwcvl")]
+[node name="Wave2Helicopters" parent="WaveContainer" unique_id=1404340842 instance=ExtResource("10_fwcvl")]
 
-[node name="WorldWalls" type="Node2D" parent="."]
+[node name="WorldWalls" type="Node2D" parent="." unique_id=1931983049]
 script = ExtResource("5_3wy1v")
 
-[node name="LeftWallArea2D" type="Area2D" parent="WorldWalls"]
+[node name="LeftWallArea2D" type="Area2D" parent="WorldWalls" unique_id=855377597]
 visible = false
 position = Vector2(-155, 435)
 collision_layer = 16
 collision_mask = 256
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldWalls/LeftWallArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldWalls/LeftWallArea2D" unique_id=362988785]
 shape = SubResource("RectangleShape2D_kfbq2")
 
-[node name="TopWallArea2D" type="Area2D" parent="WorldWalls"]
+[node name="TopWallArea2D" type="Area2D" parent="WorldWalls" unique_id=1952358008]
 visible = false
 position = Vector2(580, -155)
 collision_layer = 16
 collision_mask = 256
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldWalls/TopWallArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldWalls/TopWallArea2D" unique_id=1080114750]
 shape = SubResource("RectangleShape2D_4dugh")
 
-[node name="RightWallArea2D" type="Area2D" parent="WorldWalls"]
+[node name="RightWallArea2D" type="Area2D" parent="WorldWalls" unique_id=1227991530]
 visible = false
 position = Vector2(1304, 448)
 collision_layer = 16
 collision_mask = 256
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldWalls/RightWallArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldWalls/RightWallArea2D" unique_id=196851689]
 shape = SubResource("RectangleShape2D_67ri8")
 
-[node name="BottomWallArea2D" type="Area2D" parent="WorldWalls"]
+[node name="BottomWallArea2D" type="Area2D" parent="WorldWalls" unique_id=389142106]
 visible = false
 position = Vector2(724, 652)
 collision_layer = 16
 collision_mask = 256
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldWalls/BottomWallArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldWalls/BottomWallArea2D" unique_id=295432124]
 shape = SubResource("RectangleShape2D_grrlh")
 
-[node name="LeftWallStaticBody2D" type="StaticBody2D" parent="WorldWalls"]
+[node name="LeftWallStaticBody2D" type="StaticBody2D" parent="WorldWalls" unique_id=723317221]
 position = Vector2(16, 224)
 collision_layer = 16
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_kfbq2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldWalls/LeftWallStaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldWalls/LeftWallStaticBody2D" unique_id=1783893909]
 position = Vector2(-16, -24)
 shape = SubResource("WorldBoundaryShape2D_3wy1v")
 
-[node name="TopWallStaticBody2D" type="StaticBody2D" parent="WorldWalls"]
+[node name="TopWallStaticBody2D" type="StaticBody2D" parent="WorldWalls" unique_id=1719219812]
 position = Vector2(576, -32)
 collision_layer = 16
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_kfbq2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldWalls/TopWallStaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldWalls/TopWallStaticBody2D" unique_id=617336825]
 position = Vector2(8, 32)
 shape = SubResource("WorldBoundaryShape2D_kfbq2")
 
-[node name="RightWallStaticBody2D" type="StaticBody2D" parent="WorldWalls"]
+[node name="RightWallStaticBody2D" type="StaticBody2D" parent="WorldWalls" unique_id=720102392]
 position = Vector2(1184, 256)
 collision_layer = 16
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_kfbq2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldWalls/RightWallStaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldWalls/RightWallStaticBody2D" unique_id=1737891411]
 position = Vector2(-32, 0)
 shape = SubResource("WorldBoundaryShape2D_4dugh")
 
-[node name="BottomWallStaticBody2D" type="StaticBody2D" parent="WorldWalls"]
+[node name="BottomWallStaticBody2D" type="StaticBody2D" parent="WorldWalls" unique_id=266579511]
 position = Vector2(576, 416)
 collision_layer = 16
 collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_kfbq2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldWalls/BottomWallStaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldWalls/BottomWallStaticBody2D" unique_id=710201842]
 shape = SubResource("WorldBoundaryShape2D_67ri8")
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." unique_id=1179620428]
 layout_mode = 3
 anchors_preset = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="GameOverScreen" parent="UI" instance=ExtResource("6_kfbq2")]
+[node name="GameOverScreen" parent="UI" unique_id=1544682804 instance=ExtResource("6_kfbq2")]
 visible = false
 layout_mode = 0
 anchors_preset = 0
@@ -171,12 +179,8 @@ grow_horizontal = 1
 grow_vertical = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="TestMissile" type="Node2D" parent="."]
+[node name="MissileContainer" type="Node2D" parent="." unique_id=1990390085]
 script = ExtResource("13_na0o7")
-
-[node name="BeamContainer" type="Node2D" parent="."]
-
-[node name="Beam" parent="BeamContainer" instance=ExtResource("14_73k8k")]
 
 [connection signal="timeout" from="WaveContainer/WaveTimer" to="WaveContainer" method="_on_wave_timer_timeout"]
 [connection signal="area_entered" from="WorldWalls/LeftWallArea2D" to="WorldWalls" method="_on_left_wall_area_2d_area_entered"]
