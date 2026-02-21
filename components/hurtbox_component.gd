@@ -1,13 +1,9 @@
 class_name HurtboxComponent
 extends Area2D
 
-@export var health:float = 1
-
-@onready var papa:Node2D = get_parent()
+@export var health_componenet: HealthComponent
 
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is HitboxComponent:
-		health -= area.damage
-		if health <= 0:
-			GSignals.kill_me.emit(papa.name)
+		health_componenet.health -= area.damage

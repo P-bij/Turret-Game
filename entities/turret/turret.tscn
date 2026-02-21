@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bby8hscv0dtic" path="res://components/hurtbox_component.tscn" id="5_un5sm"]
 [ext_resource type="Script" uid="uid://dyejw7x11a0vc" path="res://entities/turret/simple_movement_component.gd" id="7_dv8dn"]
 [ext_resource type="Script" uid="uid://cnk5rxrwkndga" path="res://entities/turret/shoot_component.gd" id="8_i2huv"]
+[ext_resource type="PackedScene" uid="uid://brtuopjmicnu6" path="res://components/health_component.tscn" id="9_wypt4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8xk5y"]
 
@@ -49,10 +50,10 @@ script = ExtResource("5_56xmk")
 unique_name_in_owner = true
 one_shot = true
 
-[node name="HurtboxComponent" parent="." unique_id=1804638779 instance=ExtResource("5_un5sm")]
+[node name="HurtboxComponent" parent="." unique_id=1804638779 node_paths=PackedStringArray("health_componenet") instance=ExtResource("5_un5sm")]
 collision_layer = 32
 collision_mask = 4
-health = 501.0
+health_componenet = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1447672858]
 position = Vector2(0, -15)
@@ -67,3 +68,6 @@ script = ExtResource("7_dv8dn")
 
 [node name="ShootComponent" type="Node2D" parent="." unique_id=1185373018]
 script = ExtResource("8_i2huv")
+
+[node name="HealthComponent" parent="." unique_id=2121372974 instance=ExtResource("9_wypt4")]
+max_health = 500.0

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b00ixanhn8dr4" path="res://entities/enemies/enemy_bomb.gd" id="1_a2msy"]
 [ext_resource type="Texture2D" uid="uid://cjijlrh8rsr4w" path="res://assets/images/bomb.png" id="1_y6pj6"]
 [ext_resource type="PackedScene" uid="uid://vr2saulwoqxf" path="res://components/hitbox_component.tscn" id="5_qycv3"]
+[ext_resource type="PackedScene" uid="uid://brtuopjmicnu6" path="res://components/health_component.tscn" id="5_tj3f2"]
 [ext_resource type="PackedScene" uid="uid://bby8hscv0dtic" path="res://components/hurtbox_component.tscn" id="6_tj3f2"]
 
 [sub_resource type="Animation" id="Animation_qycv3"]
@@ -133,10 +134,13 @@ position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_qycv3")
 disabled = true
 
-[node name="HurtboxComponent" parent="." unique_id=108544957 instance=ExtResource("6_tj3f2")]
+[node name="HurtboxComponent" parent="." unique_id=108544957 node_paths=PackedStringArray("health_componenet") instance=ExtResource("6_tj3f2")]
 collision_layer = 6
 collision_mask = 96
+health_componenet = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=849126082]
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_5hnol")
+
+[node name="HealthComponent" parent="." unique_id=699146308 instance=ExtResource("5_tj3f2")]

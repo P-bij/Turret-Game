@@ -8,11 +8,14 @@ signal bullet_fired(
 signal crawling_enemy_plants_bomb(bomb_position: Vector2)
 signal falling_enemy_spawn(position_to_drop_from: Vector2)
 signal flip_enemy
+signal health_update(new_health_value: float, body_name: String)
 signal helicopter_dodge(new_position: Vector2, body: Node2D)
 signal helicopter_shoot(t_or_f: bool, target)
 signal helicopter_stop(body: Node2D)
 signal impact(pos: Vector2, falling_enemy_name: String)
 signal kill_me(body: Node2D)
+signal max_health_update(new_max_health_value: float, body_name: String)
+signal max_health_get
 signal move_away_from_the_wall(
 	amount_to_move: Vector2, true_or_false: bool, body_name: String)
 signal queue_the_fireworks(pos: Vector2)

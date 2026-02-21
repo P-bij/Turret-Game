@@ -1,43 +1,47 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmc76mwxncu4"]
+[gd_scene format=3 uid="uid://dmc76mwxncu4"]
 
 [ext_resource type="PackedScene" uid="uid://pemtdc21xuj6" path="res://entities/enemies/alpha_base_enemy.tscn" id="1_1wqjf"]
 [ext_resource type="Script" uid="uid://chjlgjjnx0m6n" path="res://entities/enemies/enemy_plane.gd" id="2_ia5sl"]
 [ext_resource type="PackedScene" uid="uid://bby8hscv0dtic" path="res://components/hurtbox_component.tscn" id="3_s4x86"]
 [ext_resource type="PackedScene" uid="uid://d27v0s5ydqapo" path="res://components/flip_component.tscn" id="4_ia5sl"]
 [ext_resource type="Texture2D" uid="uid://ceh6a6dn4do8h" path="res://assets/images/plane.png" id="5_8dbd3"]
+[ext_resource type="PackedScene" uid="uid://brtuopjmicnu6" path="res://components/health_component.tscn" id="6_dpsb3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1wqjf"]
 radius = 24.0
 height = 64.0
 
-[node name="EnemyPlane" groups=["Enemy", "Plane"] instance=ExtResource("1_1wqjf")]
+[node name="EnemyPlane" unique_id=411561097 groups=["Enemy", "Plane"] instance=ExtResource("1_1wqjf")]
 collision_mask = 16
 script = ExtResource("2_ia5sl")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0" unique_id=397713764]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_1wqjf")
 
-[node name="HurtboxComponent" parent="." index="1" instance=ExtResource("3_s4x86")]
+[node name="HurtboxComponent" parent="." index="1" unique_id=553031991 node_paths=PackedStringArray("health_componenet") instance=ExtResource("3_s4x86")]
 collision_layer = 2
 collision_mask = 64
+health_componenet = NodePath("../HealthComponent")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxComponent" index="0"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxComponent" index="0" unique_id=1524741115]
 polygon = PackedVector2Array(32, -2, 32, 8, 16, 8, 2, 24, -16, 24, 0, 8, -16, 8, -32, -8, -32, -24, -16, -8, -2, -8, -18, -24, -2, -24, 14, -8)
 
-[node name="ParatrooperTimer" type="Timer" parent="." index="2"]
+[node name="ParatrooperTimer" type="Timer" parent="." index="2" unique_id=1721974739]
 unique_name_in_owner = true
 wait_time = 3.0
 
-[node name="FlipComponent" parent="." index="3" node_paths=PackedStringArray("nodes_to_flip") instance=ExtResource("4_ia5sl")]
+[node name="FlipComponent" parent="." index="3" unique_id=1677696789 node_paths=PackedStringArray("nodes_to_flip") instance=ExtResource("4_ia5sl")]
 visible = false
 nodes_to_flip = [NodePath("..")]
 continuous_flip = false
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="4"]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="4" unique_id=878550477]
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="5"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="5" unique_id=1611864531]
 texture = ExtResource("5_8dbd3")
+
+[node name="HealthComponent" parent="." index="6" unique_id=699146308 instance=ExtResource("6_dpsb3")]
 
 [connection signal="timeout" from="ParatrooperTimer" to="." method="_on_paratrooper_timer_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

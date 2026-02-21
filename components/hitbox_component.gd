@@ -13,6 +13,7 @@ func set_damage(value: float) -> void:
 func get_damage() -> float:
 	return damage
 
+
 func set_layer(value: int) -> void:
 	set_collision_layer(value)
 

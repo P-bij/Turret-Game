@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bby8hscv0dtic" path="res://components/hurtbox_component.tscn" id="5_bc3i1"]
 [ext_resource type="Texture2D" uid="uid://bje564dnomohs" path="res://assets/animations/crawling-man.png" id="6_bc3i1"]
 [ext_resource type="PackedScene" uid="uid://d27v0s5ydqapo" path="res://components/flip_component.tscn" id="6_exfvf"]
+[ext_resource type="PackedScene" uid="uid://brtuopjmicnu6" path="res://components/health_component.tscn" id="7_exfvf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bc3i1"]
 size = Vector2(32, 16)
@@ -52,11 +53,12 @@ shape = SubResource("RectangleShape2D_bc3i1")
 
 [node name="VelocityComponent" parent="." index="2" unique_id=755149780 instance=ExtResource("4_47maq")]
 
-[node name="HurtboxComponent" parent="." index="3" unique_id=1489690498 instance=ExtResource("5_bc3i1")]
+[node name="HurtboxComponent" parent="." index="3" unique_id=1489690498 node_paths=PackedStringArray("health_componenet") instance=ExtResource("5_bc3i1")]
 visible = false
 scale = Vector2(-1, 1)
 collision_layer = 2
 collision_mask = 64
+health_componenet = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtboxComponent" index="0" unique_id=1063875302]
 position = Vector2(-0.023860931, -6)
@@ -73,7 +75,7 @@ sprite_frames = SubResource("SpriteFrames_u16ee")
 autoplay = "default"
 
 [node name="DetectionArea2D" type="Area2D" parent="." index="6" unique_id=1529011358]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectionArea2D" index="0" unique_id=788445386]
@@ -82,6 +84,8 @@ shape = SubResource("RectangleShape2D_l0yef")
 
 [node name="BombMarker2D" type="Marker2D" parent="." index="7" unique_id=934975965]
 position = Vector2(13, 0)
+
+[node name="HealthComponent" parent="." index="8" unique_id=699146308 instance=ExtResource("7_exfvf")]
 
 [connection signal="area_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_area_entered"]
 [connection signal="body_entered" from="DetectionArea2D" to="." method="_on_area_2d_body_entered"]

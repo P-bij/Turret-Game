@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cgbirycrph7a3" path="res://entities/enemies/enemy_cannon.gd" id="8_181eh"]
 [ext_resource type="PackedScene" uid="uid://d27v0s5ydqapo" path="res://components/flip_component.tscn" id="9_181eh"]
 [ext_resource type="Texture2D" uid="uid://ceh6a6dn4do8h" path="res://assets/images/plane.png" id="10_b3qkh"]
+[ext_resource type="PackedScene" uid="uid://brtuopjmicnu6" path="res://components/health_component.tscn" id="11_3uvw2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7iigk"]
 radius = 24.0
@@ -81,10 +82,11 @@ script = ExtResource("5_ph32j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDetectionComponent" index="0" unique_id=1286600063]
 shape = SubResource("CircleShape2D_7iigk")
 
-[node name="HurtboxComponent" parent="." index="7" unique_id=1919642834 instance=ExtResource("4_kcquq")]
+[node name="HurtboxComponent" parent="." index="7" unique_id=1919642834 node_paths=PackedStringArray("health_componenet") instance=ExtResource("4_kcquq")]
 visible = false
 collision_layer = 2
 collision_mask = 64
+health_componenet = NodePath("../HealthComponent")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxComponent" index="0" unique_id=144741751]
 polygon = PackedVector2Array(32, -2, 32, 8, 16, 8, 2, 24, -16, 24, 0, 8, -16, 8, -32, -8, -32, -24, -16, -8, -2, -8, -18, -24, -2, -24, 14, -8)
@@ -105,11 +107,14 @@ texture = ExtResource("10_b3qkh")
 unique_name_in_owner = true
 script = ExtResource("8_181eh")
 
+[node name="HealthComponent" parent="." index="12" unique_id=699146308 instance=ExtResource("11_3uvw2")]
+max_health = 2.0
+
 [connection signal="area_entered" from="rotatingNode/RightArea2D" to="AreaDetectionComponent" method="_on_right_area_2d_area_entered"]
 [connection signal="area_entered" from="rotatingNode/LeftArea2D" to="AreaDetectionComponent" method="_on_left_area_2d_area_entered"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
-[connection signal="timeout" from="DodgeTimer" to="." method="_on_movement_timer_timeout"]
 [connection signal="timeout" from="DodgeTimer" to="." method="_on_dodge_timer_timeout"]
+[connection signal="timeout" from="DodgeTimer" to="." method="_on_movement_timer_timeout"]
 [connection signal="timeout" from="HomingTimer" to="." method="_on_homing_timer_timeout"]
 [connection signal="area_entered" from="AreaDetectionComponent" to="AreaDetectionComponent" method="_on_area_entered"]
 [connection signal="area_exited" from="AreaDetectionComponent" to="AreaDetectionComponent" method="_on_area_exited"]

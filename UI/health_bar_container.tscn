@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://nkjwocpfp7bq"]
+
+[ext_resource type="Script" uid="uid://jdwb0revusj" path="res://UI/health_bar_container.gd" id="1_0e4qu"]
+
+[node name="HealthBarContainer" type="HBoxContainer" unique_id=1832574726]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_0e4qu")
+metadata/_edit_use_anchors_ = true
