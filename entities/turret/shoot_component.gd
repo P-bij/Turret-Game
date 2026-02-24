@@ -11,12 +11,15 @@ extends Node2D
 var shooting: bool = false
 
 
-func _shortcut_input(event: InputEvent) -> void:
-	if event.is_action_pressed("shoot") and shoot_timer.is_stopped():
+func _process(_delta: float) -> void:
+	if Input.is_action_pressed("shoot") and shoot_timer.is_stopped():
 		shoot()
-	if event.is_action_released("shoot"):
+	if Input.is_action_just_released("shoot"):
 		shooting = false
+
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("super") and !shooting:
+		print(event.is_action_pressed("super"), " ", !shooting)
 		GSignals.beam.emit(
 			bullet_marker.global_position, 
 			bullet_marker.global_rotation)

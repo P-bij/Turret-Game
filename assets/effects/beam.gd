@@ -8,7 +8,7 @@ func _ready() -> void:
 	GSignals.beam.connect(shoot_beam)
 
 
-func _shortcut_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("super"):
 		anim_player.play("charging")
 	if event.is_action_released("super"):
