@@ -15,17 +15,24 @@ func _process(delta: float) -> void:
 
 
 func movement(delta: float) -> void:
-	var direction: int = 0
+	var direction: float = 0.0
 	if we_can_move:
-		if Input.is_action_pressed("left"):
-			direction = -1
-		elif Input.is_action_pressed("right"):
-			direction = 1
+		direction = calculate_mouse_position()
 	cannon.rotation += direction * speed * delta
 	cannon.rotation = clampf(cannon.rotation, minRot, maxRot)
 
 
-func _shortcut_input(event: InputEvent) -> void:
+func calculate_mouse_position() -> float:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var mouse_pos: Vector2 = get_global_mouse_position()
+		var target_angle: float = (mouse_pos - cannon.global_position).angle()
+		var difference: float = angle_difference(
+			cannon.global_rotation, target_angle)
+		return signf(difference)
+	return 0.0
+
+
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("super"):
 		we_can_move = false
 	if event.is_action_released("super"):
