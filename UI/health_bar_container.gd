@@ -6,9 +6,6 @@ const CONTAINER_CAPACITY: int = 100
 
 var health: float = 0.0
 var amount_of_bars: int = 1
-var full_containers: int = 0
-
-signal update_the_bars
 
 
 func _ready() -> void:
@@ -21,7 +18,7 @@ func update_health_bar(new_value: float, body: String) -> void:
 	if body == "Turret":
 		var containers: Array[Node] = get_children()
 		@warning_ignore("narrowing_conversion") # This is on purpose, to round down.
-		full_containers = new_value/CONTAINER_CAPACITY
+		var full_containers: int = new_value/CONTAINER_CAPACITY
 		var remaining_health: float = new_value - (
 			full_containers*CONTAINER_CAPACITY)
 		for i: int in containers.size():

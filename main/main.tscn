@@ -17,6 +17,8 @@
 [ext_resource type="Script" uid="uid://dtlgi04bladar" path="res://main/containers/missile_container.gd" id="13_na0o7"]
 [ext_resource type="PackedScene" uid="uid://2tk6q86v7fu6" path="res://assets/effects/beam.tscn" id="14_73k8k"]
 [ext_resource type="Script" uid="uid://c3h1wb8xj2rbe" path="res://main/containers/shield_container.gd" id="15_5xyti"]
+[ext_resource type="PackedScene" uid="uid://blgf4b8bc81fp" path="res://systems/point_system.tscn" id="16_piupu"]
+[ext_resource type="PackedScene" uid="uid://bewlvyrnbax1h" path="res://UI/points_overlay.tscn" id="18_4hmqs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kfbq2"]
 size = Vector2(329, 905)
@@ -168,6 +170,8 @@ shape = SubResource("WorldBoundaryShape2D_67ri8")
 [node name="MissileContainer" type="Node2D" parent="." unique_id=1990390085]
 script = ExtResource("13_na0o7")
 
+[node name="PointSystem" parent="." unique_id=1976254616 instance=ExtResource("16_piupu")]
+
 [node name="UI" type="Control" parent="." unique_id=1179620428]
 custom_minimum_size = Vector2(1152, 648)
 layout_mode = 3
@@ -183,26 +187,43 @@ layout_mode = 0
 
 [node name="HUD" type="VBoxContainer" parent="UI" unique_id=1844719182]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
+anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -15.0
-offset_top = -15.0
-grow_horizontal = 0
+offset_top = -104.0
+grow_horizontal = 2
 grow_vertical = 0
-alignment = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/HUD" unique_id=871049939]
+[node name="HUD_HBoxContainer" type="HBoxContainer" parent="UI/HUD" unique_id=1007099116]
 layout_mode = 2
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
+size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/MarginContainer" unique_id=1007099116]
+[node name="MarginContainer3" type="MarginContainer" parent="UI/HUD/HUD_HBoxContainer" unique_id=1873870300]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
-[node name="HealthBarContainer" parent="UI/HUD/MarginContainer/HBoxContainer" unique_id=1832574726 instance=ExtResource("4_s758e")]
+[node name="HSplitContainer" type="HSplitContainer" parent="UI/HUD/HUD_HBoxContainer" unique_id=676352285]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="points_overlay" parent="UI/HUD/HUD_HBoxContainer/HSplitContainer" unique_id=1082483356 instance=ExtResource("18_4hmqs")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HealthBarContainer" parent="UI/HUD/HUD_HBoxContainer/HSplitContainer" unique_id=1832574726 instance=ExtResource("4_s758e")]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/HUD/HUD_HBoxContainer" unique_id=1814438745]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HUD" unique_id=1193613789]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
 [connection signal="timeout" from="WaveContainer/WaveTimer" to="WaveContainer" method="_on_wave_timer_timeout"]

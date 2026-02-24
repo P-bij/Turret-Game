@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://bewlvyrnbax1h"]
+
+[ext_resource type="Script" uid="uid://bppttvwecynuy" path="res://UI/points_overlay.gd" id="1_3q423"]
+[ext_resource type="Theme" uid="uid://btcwk68qcwpm" path="res://UI/label_outline.tres" id="2_ncexh"]
+
+[node name="points_overlay" type="Control" unique_id=1082483356]
+custom_minimum_size = Vector2(230, 50)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3q423")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=527555227]
+layout_mode = 0
+offset_right = 230.0
+offset_bottom = 50.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ShotsVBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=910282433]
+layout_mode = 2
+
+[node name="ShotsTitleLabel" type="Label" parent="HBoxContainer/ShotsVBoxContainer" unique_id=38882034]
+layout_mode = 2
+theme = ExtResource("2_ncexh")
+text = "Shots"
+
+[node name="ShotsLabel" type="Label" parent="HBoxContainer/ShotsVBoxContainer" unique_id=1776739418]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("2_ncexh")
+text = "0"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1364892570]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="MissesVBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1718598608]
+layout_mode = 2
+
+[node name="MissesLabel" type="Label" parent="HBoxContainer/MissesVBoxContainer" unique_id=1780784383]
+layout_mode = 2
+theme = ExtResource("2_ncexh")
+text = "Misses"
+
+[node name="MissPercentageLabel" type="Label" parent="HBoxContainer/MissesVBoxContainer" unique_id=637872719]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_ncexh")
+text = "0%"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer" unique_id=996962610]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="HitsVBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1705861896]
+layout_mode = 2
+
+[node name="HitsLabel" type="Label" parent="HBoxContainer/HitsVBoxContainer" unique_id=1349241592]
+layout_mode = 2
+theme = ExtResource("2_ncexh")
+text = "Hits"
+
+[node name="HitsPercentageLabel" type="Label" parent="HBoxContainer/HitsVBoxContainer" unique_id=931339464]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_ncexh")
+text = "0%"
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer" unique_id=2089580344]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="PointsVBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1792355662]
+layout_mode = 2
+
+[node name="PointsLabel" type="Label" parent="HBoxContainer/PointsVBoxContainer" unique_id=1085862377]
+layout_mode = 2
+theme = ExtResource("2_ncexh")
+text = "Points"
+
+[node name="PointAmountLabel" type="Label" parent="HBoxContainer/PointsVBoxContainer" unique_id=41185671]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("2_ncexh")
+text = "0"

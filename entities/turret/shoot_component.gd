@@ -17,7 +17,9 @@ func _shortcut_input(event: InputEvent) -> void:
 	if event.is_action_released("shoot"):
 		shooting = false
 	if event.is_action_pressed("super") and !shooting:
-		GSignals.beam.emit(bullet_marker.global_position, bullet_marker.global_rotation)
+		GSignals.beam.emit(
+			bullet_marker.global_position, 
+			bullet_marker.global_rotation)
 
 
 func shoot() -> void:
@@ -27,4 +29,5 @@ func shoot() -> void:
 		bullet_marker.global_rotation + subtract_rotation_to_fix, 
 		bullet_marker.global_position,
 		64, 2, "PlayerBullet")
+	GSignals.score_adjustment.emit(get_parent().name, GSignals.ShotType.FIRED)
 	shoot_timer.start(shoot_cooldown)
