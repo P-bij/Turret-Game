@@ -1,7 +1,10 @@
 extends Node
 
+enum ShotType {NOTHING, FIRED, HIT, MISS}
+
 signal beam(pos: Vector2, rot: float)
 signal begin_game_over
+signal begin_the_game
 signal begin_the_wave(wave_name: String)
 signal bullet_fired(
 	rot: float, pos: Vector2, layer: int, mask: int, group: String)
@@ -19,7 +22,7 @@ signal max_health_get
 signal move_away_from_the_wall(
 	amount_to_move: Vector2, true_or_false: bool, body_name: String)
 signal queue_the_fireworks(pos: Vector2)
-enum ShotType {NOTHING, FIRED, HIT, MISS}
+signal reset
 signal score_adjustment(body_name: String, shot_type: ShotType)
 signal score_update(new_score: int)
 signal shield_gone
