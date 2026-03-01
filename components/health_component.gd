@@ -9,6 +9,7 @@ var health: float = 1.0: set = set_health, get = get_health
 
 
 func _ready() -> void:
+	send_health_stats()
 	GSignals.max_health_get.connect(send_health_stats)
 
 
