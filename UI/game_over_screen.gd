@@ -47,7 +47,6 @@ func _on_start_again_button_pressed() -> void:
 	toggle_menu()
 	change_label()
 	GSignals.begin_the_game.emit()
-	print("begin the game")
 
 
 func _on_quit_button_pressed() -> void:

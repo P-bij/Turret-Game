@@ -19,7 +19,6 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("super") and !shooting:
-		print(event.is_action_pressed("super"), " ", !shooting)
 		GSignals.beam.emit(
 			bullet_marker.global_position, 
 			bullet_marker.global_rotation)
