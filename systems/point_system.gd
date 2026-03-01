@@ -11,6 +11,15 @@ var currentShotType: GSignals.ShotType = GSignals.ShotType.NOTHING
 
 func _ready() -> void:
 	GSignals.score_adjustment.connect(shots_total)
+	GSignals.reset.connect(reset_score_and_stats)
+
+
+func reset_score_and_stats() -> void:
+	shots_fired = 0
+	shots_hit = 0
+	shots_missed = 0
+	currentShotType = GSignals.ShotType.NOTHING
+	shots_total("Turret", currentShotType)
 
 
 func shots_total(body_name: String, shot_type: GSignals.ShotType) -> void:
