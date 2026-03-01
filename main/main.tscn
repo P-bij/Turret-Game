@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dqw5tvtpg06da"]
 
 [ext_resource type="PackedScene" uid="uid://ckf7t25wu03rx" path="res://main/ground.tscn" id="1_c651c"]
-[ext_resource type="PackedScene" uid="uid://txfaofpvs50r" path="res://entities/turret/turret.tscn" id="2_3wy1v"]
 [ext_resource type="Script" uid="uid://qe2c5asyj4oh" path="res://main/containers/turret_container.gd" id="2_4dugh"]
 [ext_resource type="Script" uid="uid://pjxoqpi82rjn" path="res://main/containers/bullet_container.gd" id="3_kfbq2"]
 [ext_resource type="Script" uid="uid://dkvgpvjh57g7y" path="res://main/containers/enemy_container.gd" id="4_4dugh"]
@@ -56,9 +55,6 @@ position = Vector2(0, 416)
 
 [node name="TurretContainer" type="Node2D" parent="." unique_id=910159906]
 script = ExtResource("2_4dugh")
-
-[node name="Turret" parent="TurretContainer" unique_id=1487887694 instance=ExtResource("2_3wy1v")]
-position = Vector2(576, 416)
 
 [node name="BeamContainer" type="Node2D" parent="." unique_id=609686138]
 
@@ -173,6 +169,7 @@ script = ExtResource("13_na0o7")
 [node name="PointSystem" parent="." unique_id=1976254616 instance=ExtResource("16_piupu")]
 
 [node name="UI" type="Control" parent="." unique_id=1179620428]
+process_mode = 3
 custom_minimum_size = Vector2(1152, 648)
 layout_mode = 3
 anchors_preset = 0
