@@ -14,6 +14,11 @@ var all_batches: Array[Node] = []
 func _ready() -> void:
 	all_batches = batches.get_children()
 	GSignals.begin_the_wave.connect(begin_wave)
+	GSignals.reset.connect(game_reset)
+
+
+func game_reset() -> void:
+	batch_timer.stop()
 
 
 func begin_wave(wave_name: String) -> void:
