@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnnvc38nqx7ii"]
+[gd_scene format=3 uid="uid://dnnvc38nqx7ii"]
 
 [ext_resource type="Texture2D" uid="uid://drahadtf88ylo" path="res://assets/animations/impact-dust.png" id="1_dwsbj"]
 [ext_resource type="Script" uid="uid://ttujbp0c5bdb" path="res://assets/effects/impact_dust.gd" id="2_vg8sm"]
+[ext_resource type="PackedScene" uid="uid://c76vhnrnvgl4p" path="res://components/reset_component.tscn" id="3_c66ix"]
 
 [sub_resource type="Animation" id="Animation_vg8sm"]
 length = 0.001
@@ -57,15 +58,15 @@ _data = {
 &"impact_dust": SubResource("Animation_fxeue")
 }
 
-[node name="impact_dust" type="Sprite2D"]
+[node name="impact_dust" type="Sprite2D" unique_id=64459564]
 modulate = Color(1, 0.85490197, 0.7254902, 1)
 texture = ExtResource("1_dwsbj")
 offset = Vector2(0, -16)
 hframes = 9
 script = ExtResource("2_vg8sm")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_dwsbj")
-}
-autoplay = "impact_dust"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=335748603]
+libraries/ = SubResource("AnimationLibrary_dwsbj")
+autoplay = &"impact_dust"
+
+[node name="ResetComponent" parent="." unique_id=229607806 instance=ExtResource("3_c66ix")]

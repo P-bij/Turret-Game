@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cskkm6kuxsq0x"]
+[gd_scene format=3 uid="uid://cskkm6kuxsq0x"]
 
 [ext_resource type="Script" uid="uid://cjk34i1cprbvj" path="res://entities/projectiles/bullet.gd" id="1_v7oki"]
 [ext_resource type="PackedScene" uid="uid://vr2saulwoqxf" path="res://components/hitbox_component.tscn" id="2_f3qpu"]
+[ext_resource type="PackedScene" uid="uid://c76vhnrnvgl4p" path="res://components/reset_component.tscn" id="2_k7qnr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rtl8c"]
 size = Vector2(10, 10)
@@ -10,25 +11,27 @@ size = Vector2(10, 10)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_v8qja"]
 
-[node name="Bullet" type="Area2D" node_paths=PackedStringArray("hitbox")]
+[node name="Bullet" type="Area2D" unique_id=1056247703 node_paths=PackedStringArray("hitbox")]
 script = ExtResource("1_v7oki")
 hitbox = NodePath("HitboxComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="ResetComponent" parent="." unique_id=229607806 instance=ExtResource("2_k7qnr")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=204161387]
 shape = SubResource("RectangleShape2D_rtl8c")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1127021406]
 modulate = Color(0.8509804, 0.02745098, 0.02745098, 1)
 material = SubResource("CanvasItemMaterial_v7oki")
 scale = Vector2(10, 10)
 texture = SubResource("CanvasTexture_v8qja")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1420047309]
 rect = Rect2(-5, -5, 10, 10)
 
-[node name="HitboxComponent" parent="." instance=ExtResource("2_f3qpu")]
+[node name="HitboxComponent" parent="." unique_id=148492909 instance=ExtResource("2_f3qpu")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1341209572]
 shape = SubResource("RectangleShape2D_rtl8c")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

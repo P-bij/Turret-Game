@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dyejw7x11a0vc" path="res://entities/turret/simple_movement_component.gd" id="7_dv8dn"]
 [ext_resource type="Script" uid="uid://cnk5rxrwkndga" path="res://entities/turret/shoot_component.gd" id="8_i2huv"]
 [ext_resource type="PackedScene" uid="uid://brtuopjmicnu6" path="res://components/health_component.tscn" id="9_wypt4"]
+[ext_resource type="PackedScene" uid="uid://c76vhnrnvgl4p" path="res://components/reset_component.tscn" id="10_em5h5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8xk5y"]
 
@@ -24,6 +25,8 @@ size = Vector2(32, 15)
 collision_layer = 32
 collision_mask = 2
 script = ExtResource("1_coqkk")
+
+[node name="ResetComponent" parent="." unique_id=229607806 instance=ExtResource("10_em5h5")]
 
 [node name="Circle" type="CollisionShape2D" parent="." unique_id=1044208398]
 position = Vector2(0, -15)

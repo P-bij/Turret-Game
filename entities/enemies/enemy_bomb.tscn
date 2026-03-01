@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b00ixanhn8dr4" path="res://entities/enemies/enemy_bomb.gd" id="1_a2msy"]
 [ext_resource type="Texture2D" uid="uid://cjijlrh8rsr4w" path="res://assets/images/bomb.png" id="1_y6pj6"]
+[ext_resource type="PackedScene" uid="uid://c76vhnrnvgl4p" path="res://components/reset_component.tscn" id="2_tj3f2"]
 [ext_resource type="PackedScene" uid="uid://vr2saulwoqxf" path="res://components/hitbox_component.tscn" id="5_qycv3"]
 [ext_resource type="PackedScene" uid="uid://brtuopjmicnu6" path="res://components/health_component.tscn" id="5_tj3f2"]
 [ext_resource type="PackedScene" uid="uid://bby8hscv0dtic" path="res://components/hurtbox_component.tscn" id="6_tj3f2"]
@@ -114,6 +115,8 @@ radius = 7.071068
 
 [node name="EnemyBomb" type="Node2D" unique_id=811357164]
 script = ExtResource("1_a2msy")
+
+[node name="ResetComponent" parent="." unique_id=229607806 instance=ExtResource("2_tj3f2")]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1584314566]
 position = Vector2(0, -8)

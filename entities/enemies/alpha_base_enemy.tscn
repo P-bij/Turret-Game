@@ -1,5 +1,9 @@
 [gd_scene format=3 uid="uid://pemtdc21xuj6"]
 
-[node name="AlphaBaseEnemy" type="CharacterBody2D"]
+[ext_resource type="PackedScene" uid="uid://c76vhnrnvgl4p" path="res://components/reset_component.tscn" id="1_ftbls"]
+
+[node name="AlphaBaseEnemy" type="CharacterBody2D" unique_id=538419929]
 collision_layer = 2
 collision_mask = 144
+
+[node name="ResetComponent" parent="." unique_id=229607806 instance=ExtResource("1_ftbls")]
