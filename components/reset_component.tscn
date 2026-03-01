@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c76vhnrnvgl4p"]
+
+[ext_resource type="Script" uid="uid://bqi3ijwwlcmmq" path="res://components/reset_component.gd" id="1_8xjpa"]
+
+[node name="ResetComponent" type="Node2D" unique_id=229607806]
+script = ExtResource("1_8xjpa")
