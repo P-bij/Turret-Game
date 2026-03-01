@@ -28,9 +28,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=2054167435]
+unique_name_in_owner = true
 layout_mode = 2
 text = "GAME OVER"
 label_settings = SubResource("LabelSettings_50k4i")
+horizontal_alignment = 1
 
 [node name="MarginContainer1" type="MarginContainer" parent="VBoxContainer" unique_id=2061445198]
 layout_mode = 2
