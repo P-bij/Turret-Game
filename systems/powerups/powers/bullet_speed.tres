@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PowerUp" format=3 uid="uid://bk582toa31qwp"]
+
+[ext_resource type="Texture2D" uid="uid://g3hocb437jym" path="res://assets/images/none.png" id="1_i50ks"]
+[ext_resource type="Script" uid="uid://c0p5jqymqgb3k" path="res://systems/powerups/powerups.gd" id="2_ovpeq"]
+
+[resource]
+script = ExtResource("2_ovpeq")
+pu_type = 2
+pu_description = "Faster Bullets"
+metadata/_custom_type_script = "uid://c0p5jqymqgb3k"

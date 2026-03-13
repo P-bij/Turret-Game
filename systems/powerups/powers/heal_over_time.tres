@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PowerUp" format=3 uid="uid://bm4tjj2egdk3c"]
+
+[ext_resource type="Texture2D" uid="uid://bk1e50e6tk2a3" path="res://assets/images/plus-heart.png" id="1_4njrb"]
+[ext_resource type="Script" uid="uid://c0p5jqymqgb3k" path="res://systems/powerups/powerups.gd" id="2_60leu"]
+
+[resource]
+script = ExtResource("2_60leu")
+pu_icon = ExtResource("1_4njrb")
+pu_description = "X amount of health over 10 seconds"
+metadata/_custom_type_script = "uid://c0p5jqymqgb3k"

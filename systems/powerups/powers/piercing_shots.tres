@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PowerUp" format=3 uid="uid://7q5imfd3a5ef"]
+
+[ext_resource type="Texture2D" uid="uid://clkfhsdut30r7" path="res://assets/images/piercing_icon.png" id="1_5dk6l"]
+[ext_resource type="Script" uid="uid://c0p5jqymqgb3k" path="res://systems/powerups/powerups.gd" id="2_7e7e7"]
+
+[resource]
+script = ExtResource("2_7e7e7")
+pu_type = 4
+pu_icon = ExtResource("1_5dk6l")
+pu_description = "Bullets continue through enemies"
+metadata/_custom_type_script = "uid://c0p5jqymqgb3k"

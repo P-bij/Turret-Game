@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PowerUp" format=3 uid="uid://dnobe1rmvx07n"]
+
+[ext_resource type="Script" uid="uid://c0p5jqymqgb3k" path="res://systems/powerups/powerups.gd" id="1_jevm5"]
+[ext_resource type="Texture2D" uid="uid://b4re6qc4xb4xq" path="res://assets/images/heart.png" id="1_welge"]
+
+[resource]
+script = ExtResource("1_jevm5")
+pu_type = 1
+pu_icon = ExtResource("1_welge")
+pu_description = "X instant health"
+metadata/_custom_type_script = "uid://c0p5jqymqgb3k"
