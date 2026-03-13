@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bkvx1fhcdcbnm"]
+
+[ext_resource type="Script" uid="uid://ce8ebwpkcsr6j" path="res://systems/powerups/dropables/dropped_item.gd" id="1_1ypg2"]
+[ext_resource type="PackedScene" uid="uid://c76vhnrnvgl4p" path="res://components/reset_component.tscn" id="2_ngtd4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpxn3"]
+size = Vector2(16, 16)
+
+[node name="Dropped_Item" type="Area2D" unique_id=501308009]
+collision_layer = 8
+collision_mask = 64
+script = ExtResource("1_1ypg2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=711745223]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_qpxn3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1968841052]
+position = Vector2(0, -8)
+
+[node name="Timer" type="Timer" parent="." unique_id=1941284287]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="ResetComponent" parent="." unique_id=229607806 instance=ExtResource("2_ngtd4")]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

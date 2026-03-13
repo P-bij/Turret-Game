@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dwtasaolpokfr"]
+
+[ext_resource type="Script" uid="uid://k1lp7fnktbiv" path="res://systems/powerups/calculate_powerups.gd" id="1_i4ai6"]
+
+[node name="calculate_powerups" type="Node" unique_id=302802372]
+script = ExtResource("1_i4ai6")

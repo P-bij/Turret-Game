@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DropableItem" format=3 uid="uid://bxp52ipkq2pfp"]
+
+[ext_resource type="Texture2D" uid="uid://ddjxlwx70b5kx" path="res://assets/images/chest_closed_anim_f0.png" id="1_rn3ue"]
+[ext_resource type="Script" uid="uid://biiyhl6l57bln" path="res://systems/powerups/dropables/droppable_item.gd" id="2_rn3ue"]
+
+[resource]
+script = ExtResource("2_rn3ue")
+item_name = "Powerup"
+weight = 2.5
+item_icon = ExtResource("1_rn3ue")
+flavour_text = "Power Up!"
+item_signal = "dropped_powerup"
+metadata/_custom_type_script = "uid://biiyhl6l57bln"

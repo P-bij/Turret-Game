@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://cxbtd7ktdshd"]
+
+[ext_resource type="Script" uid="uid://bcvy7y62gfjit" path="res://UI/powerup_card.gd" id="1_cnw4v"]
+[ext_resource type="Texture2D" uid="uid://g3hocb437jym" path="res://assets/images/none.png" id="1_sm4as"]
+[ext_resource type="StyleBox" uid="uid://d3fvpr3xaljen" path="res://UI/button_hover_theme.tres" id="1_u4728"]
+[ext_resource type="StyleBox" uid="uid://bj0vkx7g8e4un" path="res://UI/button_normal_theme.tres" id="2_jv11o"]
+[ext_resource type="Resource" uid="uid://bk582toa31qwp" path="res://systems/powerups/powers/bullet_speed.tres" id="4_rbm74"]
+
+[sub_resource type="Theme" id="Theme_rbm74"]
+Button/styles/hover = ExtResource("1_u4728")
+Button/styles/normal = ExtResource("2_jv11o")
+Button/styles/pressed = ExtResource("2_jv11o")
+
+[sub_resource type="LabelSettings" id="LabelSettings_cnw4v"]
+
+[node name="Powerup_Card" type="Button" unique_id=1911526181]
+process_mode = 3
+custom_minimum_size = Vector2(165, 290)
+offset_right = 165.0
+offset_bottom = 290.0
+pivot_offset = Vector2(82, 145)
+theme = SubResource("Theme_rbm74")
+action_mode = 0
+text_overrun_behavior = 3
+autowrap_mode = 2
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+script = ExtResource("1_cnw4v")
+powerup = ExtResource("4_rbm74")
+speed = 0.3
+shake_rotation_amount = 0.05
+shake_time = 0.05
+
+[node name="PUChoiseTimer" type="Timer" parent="." unique_id=232235094]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="ShakeTimer" type="Timer" parent="." unique_id=132744209]
+unique_name_in_owner = true
+
+[node name="CardRoot" type="HBoxContainer" parent="." unique_id=1311303261]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -143.5
+offset_right = 82.0
+offset_bottom = 143.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(82, 143)
+
+[node name="MarginContainer" type="MarginContainer" parent="CardRoot" unique_id=1115061605]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CardRoot" unique_id=1968951296]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CardRoot/VBoxContainer" unique_id=824372412]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CardRoot/VBoxContainer" unique_id=1066591710]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="CardRoot/VBoxContainer/HBoxContainer" unique_id=477601081]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+
+[node name="PowerupTextureRect" type="TextureRect" parent="CardRoot/VBoxContainer/HBoxContainer" unique_id=1559987243]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_sm4as")
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="CardRoot/VBoxContainer/HBoxContainer" unique_id=1522162359]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+
+[node name="MarginContainer3" type="MarginContainer" parent="CardRoot/VBoxContainer/HBoxContainer" unique_id=1035259003]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="CardRoot/VBoxContainer" unique_id=2057027112]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CardRoot/VBoxContainer" unique_id=592136338]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="PowerupLabel" type="Label" parent="CardRoot/VBoxContainer/ScrollContainer" unique_id=1198684865]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(147.85, 128)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_cnw4v")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="CardRoot/VBoxContainer" unique_id=442927064]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1107640991]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="timeout" from="PUChoiseTimer" to="." method="_on_pu_choise_timer_timeout"]
+[connection signal="timeout" from="ShakeTimer" to="." method="_on_rotation_timer_timeout"]

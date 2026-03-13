@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bdql0p4eyp6ui"]
+
+[ext_resource type="Script" uid="uid://c0p5jqymqgb3k" path="res://systems/powerups/powerups.gd" id="2_fis5g"]
+[ext_resource type="Script" uid="uid://ca30phnagdjm2" path="res://UI/power_up_selector.gd" id="2_rwgjp"]
+[ext_resource type="Resource" uid="uid://bk582toa31qwp" path="res://systems/powerups/powers/bullet_speed.tres" id="3_t8vwn"]
+[ext_resource type="Resource" uid="uid://31ufsvecato5" path="res://systems/powerups/powers/cannon_speed.tres" id="4_2tplw"]
+[ext_resource type="Resource" uid="uid://bm4tjj2egdk3c" path="res://systems/powerups/powers/heal_over_time.tres" id="5_22kna"]
+[ext_resource type="Resource" uid="uid://dnobe1rmvx07n" path="res://systems/powerups/powers/instant_health.tres" id="6_i6g5v"]
+[ext_resource type="Resource" uid="uid://7q5imfd3a5ef" path="res://systems/powerups/powers/piercing_shots.tres" id="7_crioe"]
+[ext_resource type="PackedScene" uid="uid://dwtasaolpokfr" path="res://systems/powerups/calculate_powerups.tscn" id="8_pqncd"]
+[ext_resource type="Script" uid="uid://cvov68m0xbbxp" path="res://components/pause_control_component.gd" id="9_fis5g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fis5g"]
+bg_color = Color(0, 0, 0, 0.49500003)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_dgrkg"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_fis5g")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64127"]
+bg_color = Color(0.41960785, 0.54509807, 0.6431373, 1)
+
+[sub_resource type="Theme" id="Theme_rwgjp"]
+ItemList/colors/font_color = Color(1, 1, 1, 1)
+ItemList/styles/panel = SubResource("StyleBoxFlat_64127")
+
+[node name="PowerUpSelector" type="PanelContainer" unique_id=1427285413]
+custom_minimum_size = Vector2(185, 310)
+offset_right = 185.0
+offset_bottom = 310.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_dgrkg")
+script = ExtResource("2_rwgjp")
+main_powerup_list = Array[ExtResource("2_fis5g")]([ExtResource("3_t8vwn"), ExtResource("4_2tplw"), ExtResource("5_22kna"), ExtResource("6_i6g5v"), ExtResource("7_crioe")])
+
+[node name="pause_control_component" type="Node" parent="." unique_id=246729890 node_paths=PackedStringArray("papa")]
+script = ExtResource("9_fis5g")
+papa = NodePath("..")
+
+[node name="calculate_powerups" parent="." unique_id=302802372 instance=ExtResource("8_pqncd")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1156911828]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=501391570]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=86927588]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer2" unique_id=786452765]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="CardHolder" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2" unique_id=909444811]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 2
+theme = SubResource("Theme_rwgjp")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer2" unique_id=781615567]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer" unique_id=942410031]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cic74rndag2v7"]
+
+[ext_resource type="Script" uid="uid://3mod2wjlwtrk" path="res://systems/powerups/drop_table.gd" id="1_jhll8"]
+[ext_resource type="Script" uid="uid://biiyhl6l57bln" path="res://systems/powerups/dropables/droppable_item.gd" id="2_dfm47"]
+[ext_resource type="Resource" uid="uid://25opqfcfqneg" path="res://systems/powerups/dropables/nothing.tres" id="3_i1urc"]
+[ext_resource type="Resource" uid="uid://bik0pgsv27til" path="res://systems/powerups/dropables/health.tres" id="4_uvokj"]
+[ext_resource type="Resource" uid="uid://bxp52ipkq2pfp" path="res://systems/powerups/dropables/powerup.tres" id="5_ycqt5"]
+
+[node name="DropTable" type="Node" unique_id=205575234]
+script = ExtResource("1_jhll8")
+drop_table = Array[ExtResource("2_dfm47")]([ExtResource("3_i1urc"), ExtResource("4_uvokj"), ExtResource("5_ycqt5")])

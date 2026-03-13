@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DropableItem" format=3 uid="uid://bik0pgsv27til"]
+
+[ext_resource type="Texture2D" uid="uid://c3qfdur8ijbeu" path="res://assets/images/small-heart.png" id="1_x8qra"]
+[ext_resource type="Script" uid="uid://biiyhl6l57bln" path="res://systems/powerups/dropables/droppable_item.gd" id="2_x8qra"]
+
+[resource]
+script = ExtResource("2_x8qra")
+item_name = "Health"
+weight = 3.0
+item_icon = ExtResource("1_x8qra")
+flavour_text = "heal yourself"
+item_signal = "dropped_health"
+metadata/_custom_type_script = "uid://biiyhl6l57bln"
