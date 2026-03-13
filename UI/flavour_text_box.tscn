@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://l2g57ji5q0rm"]
+
+[ext_resource type="Script" uid="uid://d2r66xj8ae42g" path="res://UI/flavour_text_box.gd" id="1_584yk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_584yk"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_wda6h"]
+Label/styles/normal = SubResource("StyleBoxFlat_584yk")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ck6th"]
+
+[node name="FlavourTextBox" type="Label" unique_id=1251600058]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_wda6h")
+text = "Hi!
+How are you?"
+label_settings = SubResource("LabelSettings_ck6th")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_584yk")
+
+[node name="Timer" type="Timer" parent="." unique_id=1856483730]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
