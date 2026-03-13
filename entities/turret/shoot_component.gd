@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("super") and !shooting:
-		GSignals.beam.emit(
+		Globals.beam.emit(
 			bullet_marker.global_position, 
 			bullet_marker.global_rotation)
 
@@ -27,9 +27,9 @@ func _input(event: InputEvent) -> void:
 func shoot() -> void:
 	shooting = true
 	var shoot_cooldown: float = 1 / fire_rate
-	GSignals.bullet_fired.emit(
+	Globals.bullet_fired.emit(
 		bullet_marker.global_rotation + subtract_rotation_to_fix, 
 		bullet_marker.global_position,
 		64, 2, "PlayerBullet")
-	GSignals.score_adjustment.emit(get_parent().name, GSignals.ShotType.FIRED)
+	Globals.score_adjustment.emit(get_parent().name, Globals.ShotType.FIRED)
 	shoot_timer.start(shoot_cooldown)

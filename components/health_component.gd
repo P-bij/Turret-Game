@@ -10,7 +10,7 @@ var health: float = 1.0: set = set_health, get = get_health
 
 func _ready() -> void:
 	send_health_stats()
-	GSignals.max_health_get.connect(send_health_stats)
+	Globals.max_health_get.connect(send_health_stats)
 
 
 func send_health_stats() -> void:
@@ -21,7 +21,7 @@ func send_health_stats() -> void:
 func set_health(value: float) -> void:
 	health = value
 	check_if_dead()
-	GSignals.health_update.emit(health, papa)
+	Globals.health_update.emit(health, papa)
 
 
 func get_health() -> float:
@@ -31,10 +31,10 @@ func get_health() -> float:
 func check_if_dead() -> void:
 	var we_dead: bool = health <= 0
 	if we_dead:
-		GSignals.kill_me.emit(papa)
+		Globals.kill_me.emit(papa)
 
 
 func set_max_health(value: float) -> void:
 	max_health = value
-	GSignals.max_health_update.emit(value, papa)
+	Globals.max_health_update.emit(value, papa)
 	

@@ -13,8 +13,8 @@ var all_batches: Array[Node] = []
 
 func _ready() -> void:
 	all_batches = batches.get_children()
-	GSignals.begin_the_wave.connect(begin_wave)
-	GSignals.reset.connect(game_reset)
+	Globals.begin_the_wave.connect(begin_wave)
+	Globals.reset.connect(game_reset)
 
 
 func game_reset() -> void:
@@ -34,7 +34,7 @@ func spawn_current_batch() -> void:
 	var current_batch: Node = all_batches[current_batch_count]
 	for marker in current_batch.get_children():
 		if marker is Marker2D:
-			GSignals.spawn_enemy.emit(marker.global_position, packed_enemy)
+			Globals.spawn_enemy.emit(marker.global_position, packed_enemy)
 	
 	current_batch_count += 1
 	

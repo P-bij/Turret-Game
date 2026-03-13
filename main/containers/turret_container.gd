@@ -13,8 +13,8 @@ var ground_y_position: float = 416.0 # position of the top of the ground
 
 func _ready() -> void:
 	position_the_turret()
-	GSignals.kill_me.connect(game_over_time)
-	GSignals.begin_the_game.connect(position_the_turret)
+	Globals.kill_me.connect(game_over_time)
+	Globals.begin_the_game.connect(position_the_turret)
 
 
 func position_the_turret() -> void:
@@ -30,5 +30,5 @@ func position_the_turret() -> void:
 func game_over_time(dead_name: String) -> void:
 	if turret:
 		if dead_name == name:
-			GSignals.queue_the_fireworks.emit(turret_position)
+			Globals.queue_the_fireworks.emit(turret_position)
 			turret_position = Vector2.ZERO

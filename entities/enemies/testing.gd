@@ -8,7 +8,7 @@ var target_position: Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GSignals.test_move.connect(test_movement)
+	Globals.test_move.connect(test_movement)
 
 
 func _process(_delta: float) -> void:

@@ -29,4 +29,4 @@ func _on_paratrooper_timer_timeout() -> void:
 		paratropper_min_drop_rate, paratropper_max_drop_rate
 	)
 	paratrooper_timer.start(paratropper_drop_rate)
-	GSignals.spawn_enemy.emit(global_position, paratrooper_scene)
+	Globals.spawn_enemy.emit(global_position, paratrooper_scene)

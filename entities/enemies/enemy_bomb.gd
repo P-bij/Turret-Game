@@ -4,7 +4,7 @@ var bomb_death: bool = false
 
 
 func _ready() -> void:
-	GSignals.kill_me.connect(death_to_the_bomb)
+	Globals.kill_me.connect(death_to_the_bomb)
 
 
 func death_to_the_bomb(body_name: String) -> void:
@@ -14,7 +14,7 @@ func death_to_the_bomb(body_name: String) -> void:
 
 
 func explode() -> void:
-	GSignals.queue_the_fireworks.emit(global_position)
+	Globals.queue_the_fireworks.emit(global_position)
 	if bomb_death:
 		queue_free()
 	else:

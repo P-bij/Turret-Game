@@ -8,7 +8,7 @@ var turret_pos: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
-	GSignals.shield_gone.connect(shield_off)
+	Globals.shield_gone.connect(shield_off)
 
 
 func _shortcut_input(event: InputEvent) -> void:

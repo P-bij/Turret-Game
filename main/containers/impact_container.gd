@@ -4,7 +4,7 @@ extends Node2D
 
 
 func _ready() -> void:
-	GSignals.impact.connect(impact_erupt)
+	Globals.impact.connect(impact_erupt)
 
 
 func impact_erupt(pos: Vector2, enemy_name: String) -> void:

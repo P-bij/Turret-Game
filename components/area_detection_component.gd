@@ -39,7 +39,7 @@ func falling_enemy_detection(area: Area2D):
 
 func plane_detection() -> void:
 	var my_velocity = Vector2(0,1)
-	GSignals.helicopter_dodge.emit(my_velocity, papa)
+	Globals.helicopter_dodge.emit(my_velocity, papa)
 
 func helicopter_detection() -> void:
 	var my_velocity = papa.velocity
@@ -58,9 +58,9 @@ func perp_movement(vel: Vector2) -> void:
 		if on_the_right:
 			rot_deg = rot_deg * -1
 		new_velocity = vel.rotated(deg_to_rad(rot_deg))
-		GSignals.helicopter_dodge.emit(new_velocity, papa)
+		Globals.helicopter_dodge.emit(new_velocity, papa)
 	else:
-		GSignals.helicopter_stop.emit(papa)
+		Globals.helicopter_stop.emit(papa)
 
 
 func _on_area_exited(area: Area2D) -> void:

@@ -17,5 +17,5 @@ func spawn_missile(pos: Vector2) -> void:
 			spawn_x = 0
 		else:
 			spawn_x = 1152
-		GSignals.spawn_enemy.emit(Vector2(spawn_x, pos.y), missile_scene)
+		Globals.spawn_enemy.emit(Vector2(spawn_x, pos.y), missile_scene)
 	

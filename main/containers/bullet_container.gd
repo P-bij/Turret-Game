@@ -4,7 +4,7 @@ const BULLET_SCENE: PackedScene = preload("res://entities/projectiles/bullet.tsc
 
 
 func _ready() -> void:
-	GSignals.bullet_fired.connect(create_bullet)
+	Globals.bullet_fired.connect(create_bullet)
 
 
 func create_bullet(

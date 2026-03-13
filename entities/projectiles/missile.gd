@@ -30,7 +30,7 @@ func arc_movement(delta: float) -> void:
 	
 	if t >= 1.0:
 		# Turret is hit
-		GSignals.queue_the_fireworks.emit(global_position)
+		Globals.queue_the_fireworks.emit(global_position)
 		queue_free()
 		return
 	

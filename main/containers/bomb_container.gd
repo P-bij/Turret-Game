@@ -7,7 +7,7 @@ var turret: Vector2
 
 
 func _ready() -> void:
-	GSignals.crawling_enemy_plants_bomb.connect(plant_the_bomb)
+	Globals.crawling_enemy_plants_bomb.connect(plant_the_bomb)
 	var turret_group = get_tree().get_nodes_in_group("Player")
 	if turret_group:
 		turret = get_tree().get_first_node_in_group("Player").global_position

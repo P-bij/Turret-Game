@@ -10,7 +10,7 @@ var label_text: String = "Menu"
 func _ready() -> void:
 	game_over = false
 	change_label()
-	GSignals.begin_game_over.connect(game_end)
+	Globals.begin_game_over.connect(game_end)
 	var screen_size: Vector2 = get_viewport().get_visible_rect().size
 	set_deferred("size", screen_size)
 
@@ -42,11 +42,11 @@ func toggle_menu() -> void:
 
 
 func _on_start_again_button_pressed() -> void:
-	GSignals.reset.emit()
+	Globals.reset.emit()
 	game_over = false
 	toggle_menu()
 	change_label()
-	GSignals.begin_the_game.emit()
+	Globals.begin_the_game.emit()
 
 
 func _on_quit_button_pressed() -> void:

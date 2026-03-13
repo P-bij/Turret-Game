@@ -21,7 +21,7 @@ func _on_area_entered(area: Area2D) -> void:
 		if on_the_right:
 			rot_deg = rot_deg * -1
 		new_velocity = area.bullet_velocity.rotated(deg_to_rad(rot_deg))
-		GSignals.test_move.emit(new_velocity, papa)
+		Globals.test_move.emit(new_velocity, papa)
 
 
 func _on_left_area_2d_area_entered(area: Area2D) -> void:

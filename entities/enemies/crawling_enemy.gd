@@ -15,7 +15,7 @@ func _process(_delta: float) -> void:
 
 
 func turret_reached() -> void:
-	GSignals.crawling_enemy_plants_bomb.emit(bomb_marker.global_position)
+	Globals.crawling_enemy_plants_bomb.emit(bomb_marker.global_position)
 	speed = 0
 	await get_tree().create_timer(1.5).timeout
 	queue_free()

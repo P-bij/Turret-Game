@@ -7,35 +7,35 @@ extends Node
 var shots_fired: int = 0
 var shots_hit: int = 0
 var shots_missed: int = 0
-var currentShotType: GSignals.ShotType = GSignals.ShotType.NOTHING
+var currentShotType: Globals.ShotType = Globals.ShotType.NOTHING
 
 func _ready() -> void:
-	GSignals.score_adjustment.connect(shots_total)
-	GSignals.reset.connect(reset_score_and_stats)
+	Globals.score_adjustment.connect(shots_total)
+	Globals.reset.connect(reset_score_and_stats)
 
 
 func reset_score_and_stats() -> void:
 	shots_fired = 0
 	shots_hit = 0
 	shots_missed = 0
-	currentShotType = GSignals.ShotType.NOTHING
+	currentShotType = Globals.ShotType.NOTHING
 	shots_total("Turret", currentShotType)
 
 
-func shots_total(body_name: String, shot_type: GSignals.ShotType) -> void:
+func shots_total(body_name: String, shot_type: Globals.ShotType) -> void:
 	if body_name == "Turret":
 		currentShotType = shot_type
 		match currentShotType:
-			GSignals.ShotType.FIRED:
+			Globals.ShotType.FIRED:
 				shots_fired += 1
-			GSignals.ShotType.HIT:
+			Globals.ShotType.HIT:
 				shots_hit += 1
-			GSignals.ShotType.MISS:
+			Globals.ShotType.MISS:
 				shots_missed += 1
 			_:
 				pass
-		GSignals.score_update.emit(point_calculation())
-		GSignals.statistics_update.emit(statistics_calculation())
+		Globals.score_update.emit(point_calculation())
+		Globals.statistics_update.emit(statistics_calculation())
 
 
 func point_calculation() -> int:

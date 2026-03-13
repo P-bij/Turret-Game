@@ -38,9 +38,9 @@ var homing_time: float = .6
 
 func _ready() -> void:
 	super._ready()
-	GSignals.helicopter_dodge.connect(begin_dodge)
-	GSignals.helicopter_stop.connect(stop_the_helicopter)
-	GSignals.move_away_from_the_wall.connect(wall_avoidance)
+	Globals.helicopter_dodge.connect(begin_dodge)
+	Globals.helicopter_stop.connect(stop_the_helicopter)
+	Globals.move_away_from_the_wall.connect(wall_avoidance)
 	if get_tree().get_nodes_in_group("Player").is_empty():
 		player = null
 	else:
@@ -128,7 +128,7 @@ func we_dodgin() -> void:
 func we_shootin() -> void:
 	if shots_fired < bullet_capacity:
 		shots_fired += 1
-		GSignals.bullet_fired.emit(
+		Globals.bullet_fired.emit(
 			cannon.global_rotation + ROT_FIX, 
 			cannon.bullet_marker.global_position,
 			4, 32, "EnemyBullet")

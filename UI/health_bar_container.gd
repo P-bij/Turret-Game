@@ -10,9 +10,9 @@ var amount_of_bars: int = 1
 
 
 func _ready() -> void:
-	GSignals.max_health_update.connect(bars_update)
-	GSignals.health_update.connect(update_health_bar)
-	GSignals.max_health_get.emit()
+	Globals.max_health_update.connect(bars_update)
+	Globals.health_update.connect(update_health_bar)
+	Globals.max_health_get.emit()
 
 
 func update_health_bar(new_value: float, body: String) -> void:

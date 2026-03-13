@@ -2,7 +2,7 @@ extends Node2D
 
 
 func _ready() -> void:
-	GSignals.spawn_enemy.connect(enemy_spawn)
+	Globals.spawn_enemy.connect(enemy_spawn)
 
 
 func enemy_spawn(pos: Vector2, enemy_scene: PackedScene) -> void:

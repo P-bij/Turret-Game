@@ -8,5 +8,5 @@ var enemy_name: String
 
 
 func swap_falling_with_crawling() -> void:
-	GSignals.swap_falling_for_crawling_enemy.emit(enemy_name)
-	GSignals.spawn_enemy.emit(global_position, crawling_enemy_scene)
+	Globals.swap_falling_for_crawling_enemy.emit(enemy_name)
+	Globals.spawn_enemy.emit(global_position, crawling_enemy_scene)

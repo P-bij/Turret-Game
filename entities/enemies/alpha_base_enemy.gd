@@ -5,10 +5,11 @@ extends CharacterBody2D
 
 
 func _ready() -> void:
-	GSignals.kill_me.connect(_on_death)
+	Globals.kill_me.connect(_on_death)
 
 
 func _on_death(body_name: String) -> void:
 	if body_name == name:
-		GSignals.queue_the_fireworks.emit(global_position)
+		Globals.queue_the_fireworks.emit(global_position)
+		Globals.upgrade_drop.emit(global_position)
 		queue_free()

@@ -4,7 +4,7 @@ extends Node2D
 
 
 func _ready() -> void:
-	GSignals.queue_the_fireworks.connect(fireworks_ignite)
+	Globals.queue_the_fireworks.connect(fireworks_ignite)
 
 
 func fireworks_ignite(pos: Vector2) -> void:

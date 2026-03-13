@@ -50,7 +50,7 @@ func _on_hitbox_component_area_entered(area: Area2D) -> void:
 
 func shield_death() -> void:
 	flash_timer.stop()
-	GSignals.shield_gone.emit()
+	Globals.shield_gone.emit()
 	queue_free()
 
 

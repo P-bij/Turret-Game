@@ -16,8 +16,16 @@
 [ext_resource type="Script" uid="uid://dtlgi04bladar" path="res://main/containers/missile_container.gd" id="13_na0o7"]
 [ext_resource type="PackedScene" uid="uid://2tk6q86v7fu6" path="res://assets/effects/beam.tscn" id="14_73k8k"]
 [ext_resource type="Script" uid="uid://c3h1wb8xj2rbe" path="res://main/containers/shield_container.gd" id="15_5xyti"]
-[ext_resource type="PackedScene" uid="uid://blgf4b8bc81fp" path="res://systems/point_system.tscn" id="16_piupu"]
+[ext_resource type="PackedScene" uid="uid://cic74rndag2v7" path="res://systems/powerups/drop_table.tscn" id="15_piupu"]
+[ext_resource type="PackedScene" uid="uid://blgf4b8bc81fp" path="res://systems/points_stats/point_system.tscn" id="16_piupu"]
+[ext_resource type="Script" uid="uid://biiyhl6l57bln" path="res://systems/powerups/dropables/droppable_item.gd" id="16_re7it"]
+[ext_resource type="Resource" uid="uid://bik0pgsv27til" path="res://systems/powerups/dropables/health.tres" id="17_oagth"]
 [ext_resource type="PackedScene" uid="uid://bewlvyrnbax1h" path="res://UI/points_overlay.tscn" id="18_4hmqs"]
+[ext_resource type="Resource" uid="uid://bxp52ipkq2pfp" path="res://systems/powerups/dropables/powerup.tres" id="18_n53tw"]
+[ext_resource type="Resource" uid="uid://25opqfcfqneg" path="res://systems/powerups/dropables/nothing.tres" id="19_d00gp"]
+[ext_resource type="PackedScene" uid="uid://l2g57ji5q0rm" path="res://UI/flavour_text_box.tscn" id="24_oagth"]
+[ext_resource type="PackedScene" uid="uid://bdql0p4eyp6ui" path="res://UI/power_up_selector.tscn" id="25_n53tw"]
+[ext_resource type="Script" uid="uid://duhfkce2qmql4" path="res://Tests/powerup_tester.gd" id="26_d00gp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kfbq2"]
 size = Vector2(329, 905)
@@ -51,7 +59,7 @@ normal = Vector2(-1, 0)
 script = ExtResource("15_5xyti")
 
 [node name="Ground" parent="." unique_id=1197645194 instance=ExtResource("1_c651c")]
-position = Vector2(0, 416)
+position = Vector2(-32, 416)
 
 [node name="TurretContainer" type="Node2D" parent="." unique_id=910159906]
 script = ExtResource("2_4dugh")
@@ -166,6 +174,9 @@ shape = SubResource("WorldBoundaryShape2D_67ri8")
 [node name="MissileContainer" type="Node2D" parent="." unique_id=1990390085]
 script = ExtResource("13_na0o7")
 
+[node name="DropTable" parent="." unique_id=1939943422 instance=ExtResource("15_piupu")]
+drop_table = Array[ExtResource("16_re7it")]([ExtResource("17_oagth"), ExtResource("18_n53tw"), ExtResource("19_d00gp")])
+
 [node name="PointSystem" parent="." unique_id=1976254616 instance=ExtResource("16_piupu")]
 
 [node name="UI" type="Control" parent="." unique_id=1179620428]
@@ -177,6 +188,7 @@ offset_right = 1152.0
 offset_bottom = 648.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="GameOverScreen" parent="UI" unique_id=1544682804 instance=ExtResource("6_kfbq2")]
 visible = false
@@ -222,6 +234,37 @@ layout_mode = 2
 [node name="MarginContainer" type="MarginContainer" parent="UI/HUD" unique_id=1193613789]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+
+[node name="FlavourTextBox" parent="UI" unique_id=2142447683 instance=ExtResource("24_oagth")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="PowerupsContainer" type="VBoxContainer" parent="UI" unique_id=925700903]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_bottom = 104.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PowerupsContainer" unique_id=1189274645]
+layout_mode = 2
+theme_override_constants/margin_top = 100
+
+[node name="PowerUpSelector" parent="UI/PowerupsContainer" unique_id=286438677 instance=ExtResource("25_n53tw")]
+layout_mode = 2
+
+[node name="DropTable" parent="UI" unique_id=2144363967 instance=ExtResource("15_piupu")]
+
+[node name="PowerupTester" type="Node2D" parent="UI" unique_id=49701158]
+script = ExtResource("26_d00gp")
+chest = ExtResource("18_n53tw")
 
 [connection signal="timeout" from="WaveContainer/WaveTimer" to="WaveContainer" method="_on_wave_timer_timeout"]
 [connection signal="area_entered" from="WorldWalls/LeftWallArea2D" to="WorldWalls" method="_on_left_wall_area_2d_area_entered"]

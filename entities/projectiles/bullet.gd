@@ -38,11 +38,11 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func its_a_hit(hit_or_miss: bool) -> void:
 	if is_in_group("PlayerBullet"):
 		if hit_or_miss:
-			GSignals.score_adjustment.emit(
-				"Turret", GSignals.ShotType.HIT)
+			Globals.score_adjustment.emit(
+				"Turret", Globals.ShotType.HIT)
 		else:
-			GSignals.score_adjustment.emit(
-				"Turret", GSignals.ShotType.MISS)
+			Globals.score_adjustment.emit(
+				"Turret", Globals.ShotType.MISS)
 
 
 func _on_area_entered(_area: Area2D) -> void:

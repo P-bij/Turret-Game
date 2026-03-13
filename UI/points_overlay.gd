@@ -8,8 +8,8 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GSignals.score_update.connect(score_print)
-	GSignals.statistics_update.connect(stats_print)
+	Globals.score_update.connect(score_print)
+	Globals.statistics_update.connect(stats_print)
 
 
 func score_print(points: int) -> void:

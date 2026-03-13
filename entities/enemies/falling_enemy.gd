@@ -7,7 +7,7 @@ const DOWN: Vector2 = Vector2.DOWN
 
 func _ready() -> void:
 	super()
-	GSignals.swap_falling_for_crawling_enemy.connect(kill_me)
+	Globals.swap_falling_for_crawling_enemy.connect(kill_me)
 	velocity = DOWN * speed
 	vel_comp.velocity = velocity
 
@@ -29,4 +29,4 @@ func _on_falling_timer_timeout() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Ground"):
 		vel_comp.decelerate()
-		GSignals.impact.emit(global_position, name)
+		Globals.impact.emit(global_position, name)

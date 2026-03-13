@@ -5,7 +5,7 @@ extends Node2D
 
 
 func _ready() -> void:
-	GSignals.reset.connect(start_over_again)
+	Globals.reset.connect(start_over_again)
 
 
 func start_over_again() -> void:

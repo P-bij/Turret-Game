@@ -5,7 +5,7 @@ extends Node2D
 var charged: bool = false
 
 func _ready() -> void:
-	GSignals.beam.connect(shoot_beam)
+	Globals.beam.connect(shoot_beam)
 
 
 func _input(event: InputEvent) -> void:

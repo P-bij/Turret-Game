@@ -6,8 +6,8 @@ extends Label
 
 
 func _ready() -> void:
-	GSignals.flavour_text_show.connect(display_flavour_text)
-	GSignals.flavour_text_hide.connect(hide_flavour_text)
+	Globals.flavour_text_show.connect(display_flavour_text)
+	Globals.flavour_text_hide.connect(hide_flavour_text)
 
 
 func display_flavour_text(description: String) -> void:
