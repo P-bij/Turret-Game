@@ -20,7 +20,7 @@ config/features=PackedStringArray("4.6")
 
 [autoload]
 
-Globals="*res://signals.gd"
+Globals="*res://globals.gd"
 
 [debug]
 
