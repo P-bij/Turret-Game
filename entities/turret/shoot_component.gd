@@ -8,6 +8,11 @@ extends Node2D
 @onready var bullet_marker: Marker2D = cannon.bullet_marker
 @onready var shoot_timer: Timer = %ShootTimer
 
+const PLAYER_DAMAGE: int = 64
+const ENEMY: int = 2
+const DROPPED_ITEMS: int = 8
+const ENEMY_AND_DROPPED_ITEMS: int = (ENEMY + DROPPED_ITEMS)
+
 var shooting: bool = false
 
 
@@ -30,6 +35,6 @@ func shoot() -> void:
 	Globals.bullet_fired.emit(
 		bullet_marker.global_rotation + subtract_rotation_to_fix, 
 		bullet_marker.global_position,
-		64, 2, "PlayerBullet")
+		PLAYER_DAMAGE, ENEMY_AND_DROPPED_ITEMS, "PlayerBullet")
 	Globals.score_adjustment.emit(get_parent().name, Globals.ShotType.FIRED)
 	shoot_timer.start(shoot_cooldown)

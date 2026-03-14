@@ -17,6 +17,8 @@ enum States {HOMING_IN, SHOOTING, DODGING, MOVE_AWAY_FROM_WALL, IDLE}
 @onready var homing_timer: Timer = %HomingTimer
 
 const ROT_FIX:float = deg_to_rad(90)
+const ENEMY_DAMAGE: int = 4
+const PLAYER: int = 32
 
 var state: States = States.HOMING_IN
 var direction_to_target: Vector2
@@ -131,7 +133,7 @@ func we_shootin() -> void:
 		Globals.bullet_fired.emit(
 			cannon.global_rotation + ROT_FIX, 
 			cannon.bullet_marker.global_position,
-			4, 32, "EnemyBullet")
+			ENEMY_DAMAGE, PLAYER, "EnemyBullet")
 		state_machine(States.SHOOTING)
 	else:
 		reload_timer.start(reload_time)
